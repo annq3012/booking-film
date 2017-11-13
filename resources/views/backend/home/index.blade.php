@@ -1,6 +1,6 @@
 @extends('backend.layout.main')
 
-@section('title', 'Home Page')
+@section('title', __('Home Page'))
 
 @section('content')
 <div class="content-wrapper">
@@ -19,14 +19,14 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>{{ $users }}</h3>
+              <h3>{{  getCount('users') }}</h3>
 
               <p>{{ __('Users') }}</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#" class="small-box-footer">{{ __('More info') }} <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -34,14 +34,14 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>{{ $films }}</h3>
+              <h3>{{  getCount('films') }}</h3>
 
               <p>{{ __('Films') }}</p>
             </div>
             <div class="icon">
               <i class="ion ion-monitor"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#" class="small-box-footer">{{ __('More info') }} <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -49,14 +49,14 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>{{ $cinemas }}</h3>
+              <h3>{{  getCount('cinemas') }}</h3>
 
               <p>{{ __('Cinemas') }}</p>
             </div>
             <div class="icon">
               <i class="ion ion-videocamera"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#" class="small-box-footer">{{ __('More info') }} <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -64,14 +64,14 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>{{ $cities }}</h3>
+              <h3>{{  getCount('cities') }}</h3>
 
               <p>{{ __('Cities') }}</p>
             </div>
             <div class="icon">
               <i class="ion ion-map"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#" class="small-box-footer">{{ __('More info') }} <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->

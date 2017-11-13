@@ -23,6 +23,7 @@
       </form> -->
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
+
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">{{ __('Tools Option') }}</li>
         <li class="active treeview">
@@ -40,7 +41,7 @@
           <a href="pages/widgets.html">
             <i class="fa fa-laptop"></i> <span>{{__('Cinemas') }}</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-green">{{ $cinemas }}</small>
+              <small class="label pull-right bg-green">{{ getCount('cinemas') }}</small>
             </span>
           </a>
         </li>
@@ -49,7 +50,7 @@
             <i class="fa fa-map-o"></i>
             <span>{{ __('Cities') }}</span>
             <span class="pull-right-container">
-              <span class="label label-primary pull-right">{{ $cities }}</span>
+              <span class="label label-primary pull-right">{{ getCount('cities') }}</span>
             </span>
           </a>
         </li>
@@ -63,7 +64,7 @@
             <i class="fa fa-film"></i>
             <span>{{ __('Films') }}</span>
             <span class="pull-right-container">
-              <span class="label label-primary pull-right">{{ $films }}</span>
+              <span class="label label-primary pull-right">{{ getCount('films') }}</span>
             </span>
           </a>
         </li>
@@ -81,6 +82,9 @@
         <li>
           <a href="pages/mailbox/mailbox.html">
             <i class=" fa fa-user"></i> <span>{{ __('Users') }}</span>
+            <span class="pull-right-container">
+            <small class="label pull-right bg-green">{{  getCount('users') }}</small>
+            </span>
           </a>
         </li>
       </ul>

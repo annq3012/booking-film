@@ -18,16 +18,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $users = User::count();
-        $films = Film::count();
-        $cinemas = Cinema::count();
-        $cities = City::count();
-        return view('backend.home.index', compact(
-            'users',
-            'films',
-            'cinemas',
-            'cities'
-        ));
+        
+        return view('backend.home.index');
     }
 
 }

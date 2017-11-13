@@ -23,7 +23,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'fullname', 'email', 'password', 'birthday', 'address', 'image'
+        'fullname', 'email', 'password', 'birthday', 'address', 'image', 'is_admin'
     ];
 
     /**
@@ -44,4 +44,19 @@ class User extends Authenticatable
     {
         return $this->hasMany(BookingFilm::class);
     }
+
+    /**
+     * Value paginate of row
+     */
+    const ROW_LIMIT = 10;
+
+    /**
+     * Value of admin
+     */
+    const ROLE_ADMIN = 1;
+
+    /**
+     * Value of user
+     */
+    const ROLE_USER = 0;
 }

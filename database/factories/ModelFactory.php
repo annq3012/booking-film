@@ -23,6 +23,7 @@ $factory->define(App\Model\User::class, function (Faker $faker) {
         'birthday' => $faker->date($format = 'd-m-Y'),
         'address' => $faker->address,
         'image' => $faker->text,
+        'is_admin' => $faker->numberBetween($min=0, $max=1)
         
     ];
 });

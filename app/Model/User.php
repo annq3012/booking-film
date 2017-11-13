@@ -2,9 +2,10 @@
 
 namespace App\Model;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -43,6 +44,22 @@ class User extends Authenticatable
     public function bookingFilm()
     {
         return $this->hasMany(BookingFilm::class);
+    }
+
+    /**
+     * This is a recommended way to declare event handlers
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($user) {
+            if (Hash::needsRehash($user->password)) {
+                $user->password = bcrypt($user->password);
+            }
+        });
     }
 
     /**

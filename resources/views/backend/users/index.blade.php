@@ -15,14 +15,16 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">{{ __('List Users') }}</h3>
+            <div>
+              <h3 >{{ __('List Users') }}</h3>
             </div>
             <!-- /.box-header -->
 
             {{-- add button --}}
             <div>
-              <button class="btn btn-primary btn-sm pull-right btn-add">{{ __('Add User') }}</button>
+              <a class="btn btn-primary btn-sm pull-right btn-add" href=" {{ route('user.create')}}">
+                <span class="fa fa-plus-circle">{{ __('Add User') }} </span>
+              </a>
             </div>
             {{-- end add button --}}
 
@@ -73,9 +75,11 @@
             </div>
             <!-- /.box-body -->
              {{-- add button --}}
-              <div>
-                <button class="btn btn-primary btn-sm pull-right btn-add">{{ __('Add User') }}</button>
-              </div>
+             <div>
+              <a class="btn btn-primary btn-sm pull-right btn-add" href=" {{ route('user.create')}}">
+                <span class="fa fa-plus-circle">{{ __('Add User') }} </span>
+              </a>
+            </div>
             {{-- end add button --}}
              {!! $users->render() !!}
           </div>

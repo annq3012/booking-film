@@ -1,3 +1,13 @@
 .btn-add {
 	margin: 10px;
 }
+h3 {
+	color: green;
+	text-align: center;
+	font-weight: bold;
+	font-size: 30px;
+}
+.btn-reset {
+	margin: 0 10px;
+	 
+}

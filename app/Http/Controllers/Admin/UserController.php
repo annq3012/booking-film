@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateUserRequest;
 use App\Model\User;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -21,9 +21,10 @@ class UserController extends Controller
             'fullname',
             'birthday',
             'address',
+            'image',
             'is_admin',
         ];
-        $users = User::select($columns)->orderby('id')->paginate(User::ROW_LIMIT);
+        $users = User::select($columns)->paginate(User::ROW_LIMIT);
         return view('backend.users.index', compact('users'));
     }
 
@@ -34,7 +35,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.users.create');
     }
 
     /**
@@ -43,9 +44,19 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateUserRequest $request)
     {
-        //
+        $users = new User($request->all());
+        if($request->hasFile('image')) {
+            $users->image = config('image.name_prefix') .'-'. $request->image->hashName();
+            $request->file('image')->move(config('image.users.path'), $users->image);
+        }
+        if ($users->save()) {
+            /*flash(__('Creation successful!'))->success();*/
+        } else {
+            /*flash(__('Creation failed!'))->error();*/
+        }
+        return redirect()->route('user.index');
     }
 
     /**

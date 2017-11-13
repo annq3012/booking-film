@@ -87,6 +87,7 @@ $factory->define(App\Model\Film::class, function (Faker $faker) {
 $factory->define(App\Model\BookingFilm::class, function (Faker $faker) {
     return [
         'booking_time' => $faker->dateTimeBetween($min = '2017-10-10'),
+        'status' => $faker->numberBetween($min = 0, $max = 1)
     ];
 });
 

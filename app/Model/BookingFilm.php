@@ -19,7 +19,7 @@ class BookingFilm extends Model
      * @var array $fillable
      */
     protected $fillable = [
-        'booking_time', 'user_id', 'schedule_id'
+        'booking_time', 'user_id', 'schedule_id', 'status'
     ];
 
      /**

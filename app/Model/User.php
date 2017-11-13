@@ -1,13 +1,21 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
 {
     use Notifiable;
+
+     /**
+     * Declare table
+     *
+     * @var string $tabel table name
+     */
+    protected $table = 'users';
 
     /**
      * The attributes that are mass assignable.
@@ -15,7 +23,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'fullname', 'email', 'password', 'birthday', 'address', 'image'
     ];
 
     /**
@@ -26,4 +34,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Relationship hasMany with bookingFilm
+     *
+     * @return array
+    */
+    public function bookingFilm()
+    {
+        return $this->hasMany(BookingFilm::class);
+    }
 }

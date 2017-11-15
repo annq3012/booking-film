@@ -19,6 +19,6 @@
     "admin-lte": "^2.4.2"
   },
   "resolutions": {
-    "jquery": "~1.11.1"
+    "jquery": "1.11.4"
   }
 }

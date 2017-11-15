@@ -30,6 +30,7 @@ class CreateFilmsTable extends Migration
             $table->string('link')->nullable();
             $table->tinyInteger('status');
             $table->string('slug')->unique();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

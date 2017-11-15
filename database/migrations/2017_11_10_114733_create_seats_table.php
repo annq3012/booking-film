@@ -20,6 +20,7 @@ class CreateSeatsTable extends Migration
             $table->integer('type');
             $table->integer('room_id')->unsigned();;
             $table->foreign('room_id')->references('id')->on('rooms');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

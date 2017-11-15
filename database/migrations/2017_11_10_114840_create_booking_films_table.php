@@ -21,6 +21,7 @@ class CreateBookingFilmsTable extends Migration
             $table->tinyInteger('status');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('schedule_id')->references('id')->on('schedules');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

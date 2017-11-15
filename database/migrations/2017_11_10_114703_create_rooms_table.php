@@ -21,6 +21,7 @@ class CreateRoomsTable extends Migration
             $table->integer('cinema_id')->unsigned();
             $table->foreign('cinema_id')->references('id')->on('cinemas');
             $table->string('slug')->unique();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

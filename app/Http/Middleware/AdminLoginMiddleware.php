@@ -6,13 +6,14 @@ use App\Model\User;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class LoginMiddleware
+class AdminLoginMiddleware
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param \Illuminate\Http\Request $request request
+     * @param \Closure                 $next    next
+     *
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -25,7 +26,7 @@ class LoginMiddleware
                 return redirect()->back();
             }
         } else {
-            return redirect('/login');
+            return redirect('/admin/login');
         }
     }
 }

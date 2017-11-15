@@ -55,5 +55,4 @@ class User extends Authenticatable
      * Value of user
      */
     const ROLE_USER = 0;
-
 }

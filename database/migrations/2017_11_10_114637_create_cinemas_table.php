@@ -19,6 +19,7 @@ class CreateCinemasTable extends Migration
             $table->integer('city_id')->unsigned();
             $table->foreign('city_id')->references('id')->on('cities');
             $table->string('slug')->unique();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

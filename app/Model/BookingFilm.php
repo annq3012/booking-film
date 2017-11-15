@@ -3,9 +3,12 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class BookingFilm extends Model
 {
+     use SoftDeletes;
+     
      /**
      * Declare table
      *
@@ -19,7 +22,7 @@ class BookingFilm extends Model
      * @var array $fillable
      */
     protected $fillable = [
-        'booking_time', 'user_id', 'schedule_id'
+        'booking_time', 'user_id', 'schedule_id', 'status'
     ];
 
      /**

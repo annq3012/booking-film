@@ -20,9 +20,14 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('birthday');
             $table->string('address');
+<<<<<<< HEAD
             $table->string('image');
+=======
+            $table->string('image')->nullable();
+>>>>>>> master
             $table->tinyInteger('is_admin');
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

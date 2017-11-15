@@ -20,6 +20,7 @@ class CreateDetailBookingTable extends Migration
             $table->integer('price');
             $table->integer('booking_film_id')->unsigned();;
             $table->foreign('booking_film_id')->references('id')->on('booking_films');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

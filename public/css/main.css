@@ -1,3 +1,41 @@
 .btn-add {
 	margin: 10px;
 }
+.h-title {
+	color: green;
+	font-weight: bold;
+	font-size: 30px;
+	text-align: center;
+}
+
+.btn-delete-item {
+    border: none;
+    background: unset;
+    color: #e23434;
+    margin-top:5px; 
+}
+.btn-custom-option {
+    font-size: 22px;
+}
+.btn-option:after {
+    content: "";
+    clear:both;
+}
+.btn-option{
+    width: 95px;
+    margin: 0 auto;
+}
+.cls-search {
+    margin-left: -14px;
+    margin-top: 2px;
+}
+.btn-pencil{
+    font-size: 18px;
+}
+.btn-option .btn-edit {
+    margin-top: 12px;
+    margin-left: 21px;
+}
+.form-delete{
+    margin-top: 3px;
+}

@@ -1,6 +1,8 @@
 machine:
   php:
     version: 7.1.4
+  node:
+    version: 6.0
   pre:
     - sudo apt-get install circleci-php-7.1.4
     # - sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
@@ -13,8 +15,8 @@ dependencies:
     # - echo "memory_limit = 512M" > /opt/circleci/php/$(phpenv global)/etc/conf.d/memory.ini
 test:
   pre:
-    - "bower cache clean"
-    - "bower install"
+    - npm install bower
+    - bower install
     # - "./vendor/laravel/dusk/bin/chromedriver-linux":
     #     background: true
     # - "php artisan serve":

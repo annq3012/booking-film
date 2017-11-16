@@ -45,4 +45,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(BookingFilm::class);
     }
+
+    /**
+     * Value of admin
+     */
+    const ROLE_ADMIN = 1;
+
+    /**
+     * Value of user
+     */
+    const ROLE_USER = 0;
 }

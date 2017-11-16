@@ -7,7 +7,7 @@
           <img src="{{ asset('bower_components/admin-lte/dist/img/shank.jpg') }}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Nguyễn Quốc Ân</p>
+          <p>{{Auth::user()->fullname}}</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>

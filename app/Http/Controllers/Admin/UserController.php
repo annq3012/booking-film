@@ -21,10 +21,10 @@ class UserController extends Controller
             'fullname',
             'birthday',
             'address',
-            'images',
+            'image',
             'is_admin',
         ];
-        $users = User::select($columns)->orderby('id')->paginate(User::ROW_LIMIT);
+        $users = User::select($columns)->paginate(User::ROW_LIMIT);
         return view('backend.users.index', compact('users'));
     }
 }

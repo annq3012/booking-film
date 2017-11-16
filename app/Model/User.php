@@ -47,11 +47,6 @@ class User extends Authenticatable
     }
 
     /**
-     * Value paginate of row
-     */
-    const ROW_LIMIT = 10;
-
-    /**
      * Value of admin
      */
     const ROLE_ADMIN = 1;
@@ -60,4 +55,9 @@ class User extends Authenticatable
      * Value of user
      */
     const ROLE_USER = 0;
+
+    /**
+     * Value of pagination
+     */
+    const ROW_LIMIT = 10;
 }

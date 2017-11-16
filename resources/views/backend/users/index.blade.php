@@ -52,7 +52,7 @@
                   <td> {{ $user->birthday }}</td>
                   <td>{{ $user->address }}</td>
                   <td class="text-center">
-                    <form method="POST" action="{{-- {{ route('user.updateRole', $user->id) }} --}}">
+                    <form method="POST" action="">
                       {!! csrf_field() !!}
                       {{ method_field('PUT') }}
                       @if ($user->is_admin == App\Model\User::ROLE_ADMIN)

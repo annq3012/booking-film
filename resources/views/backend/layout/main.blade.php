@@ -50,9 +50,7 @@
     @yield('content')
   <!-- /.content-wrapper -->
 
-  
    @include('backend.layout.partials.footer')
->>>>>>> master
 
 </div>
 <!-- ./wrapper -->

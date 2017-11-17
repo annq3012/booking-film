@@ -70,6 +70,14 @@
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
+                        <div class="pull-right">
+                           <form action="{{ route('logout') }}" method="POST">
+                            {{csrf_field()}}
+                            <button type="submit" name="logout">
+                              {{__('Log out')}}
+                            </button>
+                              </form>
+                            </div>
                     @else
                         <a href="{{ route('login') }}">Login</a>
                         <a href="{{ route('register') }}">Register</a>

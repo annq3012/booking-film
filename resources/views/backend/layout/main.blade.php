@@ -29,9 +29,11 @@
   <link rel="stylesheet" href="{{ asset('bower_components/bootstrap-daterangepicker/daterangepicker.css') }}">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{ asset('bower_components/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
-
+  {{-- css style --}}
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -48,7 +50,6 @@
     @yield('content')
   <!-- /.content-wrapper -->
 
-  
    @include('backend.layout.partials.footer')
 
 </div>

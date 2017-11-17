@@ -24,7 +24,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'fullname', 'email', 'password', 'birthday', 'address', 'image'
+        'fullname', 'email', 'password', 'birthday', 'address', 'image', 'is_admin'
     ];
 
     /**
@@ -55,4 +55,9 @@ class User extends Authenticatable
      * Value of user
      */
     const ROLE_USER = 0;
+
+    /**
+     * Value of pagination
+     */
+    const ROW_LIMIT = 10;
 }

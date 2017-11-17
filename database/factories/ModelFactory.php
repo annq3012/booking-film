@@ -22,8 +22,9 @@ $factory->define(App\Model\User::class, function (Faker $faker) {
         'password' => $password ?: $password = bcrypt('secret'),
         'birthday' => $faker->date($format = 'd-m-Y'),
         'address' => $faker->address,
+        'phone' => $faker->phoneNumber,
         'image' => $faker->text,
-        'is_admin' => $faker->numberBetween($min=0, $max=1)
+        'is_admin' => $faker->numberBetween($min = 0, $max = 1)
         
     ];
 });
@@ -88,6 +89,7 @@ $factory->define(App\Model\Film::class, function (Faker $faker) {
 $factory->define(App\Model\BookingFilm::class, function (Faker $faker) {
     return [
         'booking_time' => $faker->dateTimeBetween($min = '2017-10-10'),
+        'status' => $faker->numberBetween($min = 0, $max = 1)
     ];
 });
 

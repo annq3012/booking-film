@@ -44,17 +44,17 @@ if (!function_exists('areActiveRoute')) {
 if (!function_exists('getCount')) {
     
     /**
-     * Get percent progress of rating attribute
+     * Get percent progress name of database
      *
-     * @param float $avgRating average rating
+     * @param string $name name of database
      *
      * @return float
      */
-    function getCount($i)
+    function getCount($name)
     {
         $count = array('users' => User::count() , 'films' => Film::count(),
         'cinemas' => Cinema::count(),
         'cities' => City::count());
-        return $count[$i];
+        return $count[$name];
     }
 }

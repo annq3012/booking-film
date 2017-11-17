@@ -3,13 +3,14 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, SoftDeletes;
 
      /**
      * Declare table
@@ -24,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'fullname', 'email', 'password', 'birthday', 'address', 'image', 'is_admin'
+        'fullname', 'email', 'password', 'birthday', 'address', 'phone', 'image', 'is_admin'
     ];
 
     /**
@@ -63,11 +64,6 @@ class User extends Authenticatable
     }
 
     /**
-     * Value paginate of row
-     */
-    const ROW_LIMIT = 10;
-
-    /**
      * Value of admin
      */
     const ROLE_ADMIN = 1;
@@ -76,4 +72,9 @@ class User extends Authenticatable
      * Value of user
      */
     const ROLE_USER = 0;
+
+    /**
+     * Value of pagination
+     */
+    const ROW_LIMIT = 10;
 }

@@ -31,6 +31,6 @@ class CreateUserRequest extends FormRequest
             'address' => 'required',
             'phone' => 'required|numeric',
             'birthday' => 'required|date',
-        ];
+         ];
     }
 }

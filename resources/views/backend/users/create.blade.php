@@ -6,21 +6,22 @@
 <div class="content-wrapper">
   <div class="box box-primary">
             <div >
-              <h3 >{{ __('Users Create') }}</h3>
+              <h3 class="h-title" >{{ __('Users Create') }}</h3>
+              @include('flash::message')
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" method="POST" action="{{ route('user.store') }}" enctype="multipart/form-data">
+            <form role="form" method="POST" action="{{ route('users.store') }}" enctype="multipart/form-data">
               {{ csrf_field()}}
               <div class="box-body">
                 <div class="form-group">
                   <label for="fullname">{{ __('Fullname') }}</label>
-                  <input type="text" class="form-control {{ $errors->has('fullname') ? ' has-error' : '' }}" id="fullname" name="fullname" placeholder="{{ __('Enter your name') }}">
+                  <input type="text" class="form-control {{ $errors->has('fullname') ? ' has-error' : '' }}" id="fullname" name="fullname" placeholder="{{ __('Enter your name') }}" value="{{ old('fullname') }}">
                   <small class="text-danger">{{ $errors->first('fullname') }}</small>
                 </div>
                  <div class="form-group">
                   <label for="email">{{ __('Email address') }}</label>
-                  <input type="email" class="form-control {{ $errors->has('email') ? ' has-error' : '' }}" id="email" name="email" placeholder="{{ __('Enter email') }}">
+                  <input type="email" class="form-control {{ $errors->has('email') ? ' has-error' : '' }}" id="email" name="email" placeholder="{{ __('Enter email') }}" value="{{ old('email') }}">
                   <small class="text-danger">{{ $errors->first('email') }}</small>
                 </div>
                 <div class="form-group">
@@ -39,7 +40,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-calendar"></i>
                     </div>
-                    <input type="date" class="form-control {{ $errors->has('birthday') ? ' has-error' : '' }}" name="birthday">
+                    <input type="date" class="form-control {{ $errors->has('birthday') ? ' has-error' : '' }}" name="birthday" value="{{ old('birthday') }}">
                   </div>
                    <small class="text-danger">{{ $errors->first('birthday') }}</small>
                   <!-- /.input group -->
@@ -51,7 +52,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-map"></i>
                     </div>
-                    <input type="text" class="form-control {{ $errors->has('address') ? ' has-error' : '' }}" name="address">
+                    <input type="text" class="form-control {{ $errors->has('address') ? ' has-error' : '' }}" name="address" value="{{ old('address') }}">
                   </div>
                    <small class="text-danger">{{ $errors->first('address') }}</small>
                   <!-- /.input group -->
@@ -63,7 +64,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-phone"></i>
                     </div>
-                    <input type="text" class="form-control {{ $errors->has('phone') ? ' has-error' : '' }}" name="phone">
+                    <input type="text" class="form-control {{ $errors->has('phone') ? ' has-error' : '' }}" name="phone" value="{{ old('phone') }}">
                   </div>
                    <small class="text-danger">{{ $errors->first('phone') }}</small>
                   <!-- /.input group -->
@@ -87,7 +88,7 @@
 
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary pull-right">{{ __('Submit') }}</button>
-                <a href="{{ route('user.index') }}" class="btn btn-default pull-left">{{ __('Back') }}</a>
+                <a href="{{ route('users.index') }}" class="btn btn-default pull-left">{{ __('Back') }}</a>
                 <button type="reset" class="btn btn-warning pull-left btn-reset">{{ __('Reset') }}</button>
               </div>
             </form>

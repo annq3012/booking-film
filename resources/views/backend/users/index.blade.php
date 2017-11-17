@@ -16,15 +16,17 @@
         <div class="col-xs-12">
           <div class="box">
             <div>
-              <h3 >{{ __('List Users') }}</h3>
+              <h3 class="h-title">{{ __('List Users') }}</h3>
             </div>
             <!-- /.box-header -->
 
             {{-- add button --}}
-            <div>
-              <a class="btn btn-primary btn-sm pull-right btn-add" href=" {{ route('user.create')}}">
-                <span class="fa fa-plus-circle">{{ __('Add User') }} </span>
-              </a>
+            <div class="contain-btn">
+                  <span class="pull-left ml-10" >@include('flash::message')</span>
+                  <a class="btn btn-primary pull-right btn-add" href="{{ route('users.create')}}" id="btn-add-user">
+                  <span class="fa fa-plus-circle"></span>
+                  {{ __('Add user') }}
+                  </a>
             </div>
             {{-- end add button --}}
 
@@ -51,22 +53,26 @@
                   <td> {{ $user->birthday }}</td>
                   <td>{{ $user->address }}</td>
                   <td class="text-center">
-                      <form method="POST" action="{{-- {{ route('user.updateRole', $user->id) }} --}}">
-                        {!! csrf_field() !!}
-                        {{ method_field('PUT') }}
-                        @if ($user->is_admin == App\Model\User::ROLE_ADMIN)
-                          <button type="submit" class="btn btn-warning btn-sm">{{ __('Admin') }}</button>
-                        @else
-                          <button type="submit" class="btn btn-default btn-sm">{{ __('User') }}</button>
-                        @endif
-                      </form>
-                  </td>
-                  <td>
-                    <a href="" class="btn-edit fa fa-pencil-square-o btn-custom-option pull-left"></a>
-                    <form method="POST" class="inline">
+                    <form method="POST" action="">
                       {!! csrf_field() !!}
-                      <button type="submit" class="btn-custom-option btn btn-delete-item fa fa-trash-o"></button>
+                      {{ method_field('PUT') }}
+                      @if ($user->is_admin == App\Model\User::ROLE_ADMIN)
+                      <button type="submit" class="btn btn-warning btn-sm">{{ __('Admin') }}</button>
+                      @else
+                        <button type="submit" class="btn btn-default btn-sm">{{ __('User') }}</button>
+                      @endif
                     </form>
+                  </td>
+                  <td align="center">
+                    <div class="btn-option text-center">
+                      <a href=""  class="btn-edit fa fa-pencil-square-o btn-custom-option pull-left" >
+                      </a>
+                      <form method="POST" action="" class="inline">
+                        <button type="submit" 
+                          class="btn-custom-option btn btn-delete-item fa fa-trash-o">
+                        </button>
+                      </form> 
+                    </div>
                   </td>
                 </tr>
                 @endforeach
@@ -75,11 +81,12 @@
             </div>
             <!-- /.box-body -->
              {{-- add button --}}
-             <div>
-              <a class="btn btn-primary btn-sm pull-right btn-add" href=" {{ route('user.create')}}">
-                <span class="fa fa-plus-circle">{{ __('Add User') }} </span>
-              </a>
-            </div>
+              <div class="contain-btn">
+                  <a class="btn btn-primary pull-right btn-add" href="{{ route('users.create')}}" id="btn-add-user">
+                  <span class="fa fa-plus-circle"></span>
+                  {{ __('Add user') }}
+                  </a>
+              </div>
             {{-- end add button --}}
              {!! $users->render() !!}
           </div>

@@ -49,7 +49,7 @@
                   <td>{{ $user->email }}
                   </td>
                   <td>{{ $user->fullname }}</td>
-                  <td> {{ $user->birthday }}</td>
+                  <td> {{ date('d-m-Y', strtotime($user->birthday)) }}</td>
                   <td>{{ $user->address }}</td>
                   <td class="text-center">
                     <form method="POST" action="">
@@ -66,8 +66,10 @@
                     <div class="btn-option text-center">
                       <a href=""  class="btn-edit fa fa-pencil-square-o btn-custom-option pull-left" >
                       </a>
-                      <form method="POST" action="" class="inline">
-                        <button type="submit" 
+                      <form method="POST" action="{{ route('users.destroy', $user->id) }}" class="inline">
+                        {!! csrf_field() !!}
+                        {{ method_field('DELETE') }}
+                        <button type="button" 
                           class="btn-custom-option btn btn-delete-item fa fa-trash-o">
                         </button>
                       </form> 

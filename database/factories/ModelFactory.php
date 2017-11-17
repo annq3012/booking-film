@@ -22,6 +22,7 @@ $factory->define(App\Model\User::class, function (Faker $faker) {
         'password' => $password ?: $password = bcrypt('secret'),
         'birthday' => $faker->date($format = 'd-m-Y'),
         'address' => $faker->address,
+        'phone' => $faker->phoneNumber,
         'image' => $faker->text,
         'is_admin' => $faker->numberBetween($min = 0, $max = 1)
         

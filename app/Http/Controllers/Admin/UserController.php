@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateUserRequest;
 use App\Model\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -32,23 +32,52 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id id of user
+     * @param int $user object of user
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        if (Auth::user()->id == $id) {
+        if (Auth::user()->id == $user->id) {
             flash(__('User is logging! Can\'t delete this user!'))->warning();
+            return redirect()->back()->withInput();
         } else {
-            $user = User::findOrFail($id);
             if ($user->delete()) {
                 flash(__('Deletion successful!'))->success();
             } else {
                 flash(__('Deletion failed!'))->error();
             }
         }
-        
+    }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('backend.users.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function store(CreateUserRequest $request)
+    {
+        $users = new User($request->all());
+        if ($request->hasFile('image')) {
+            $users->image = config('image.name_prefix') .'-'. $request->image->hashName();
+            $request->file('image')->move(config('image.users.path'), $users->image);
+        }
+        if ($users->save()) {
+            flash(__('Creation successful!'))->success();
+        } else {
+            flash(__('Creation failed!'))->error();
+        }
         return redirect()->route('users.index');
     }
 }

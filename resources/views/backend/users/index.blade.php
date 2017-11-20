@@ -19,15 +19,20 @@
               <h3 class="h-title">{{ __('List Users') }}</h3>
             </div>
             <!-- /.box-header -->
-
             {{-- add button --}}
-            <div class="contain-btn">
+              <div class="col-md-6">
+                  <form method="GET" action="{{ route('users.index') }}" class="container-search">
+                    <input class="input-search form-control" placeholder="Search" name="search" type="text" value="{{ app('request')->input('search') }}">
+                    <button type="submit" class="btn btn-primary btn-search"><i class="glyphicon glyphicon-search"></i></button>
+                  </form>
+              </div>
+              <div class="contain-btn">
                   <span class="pull-left ml-10" >@include('flash::message')</span>
                   <a class="btn btn-primary pull-right btn-add" href="{{ route('users.create')}}" id="btn-add-user">
                   <span class="fa fa-plus-circle"></span>
                   {{ __('Add user') }}
                   </a>
-            </div>
+              </div>
             {{-- end add button --}}
 
             <div class="box-body">

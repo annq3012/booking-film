@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Libraries\Traits\SearchTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
-    use Notifiable, SoftDeletes;
+    use Notifiable, SoftDeletes, SearchTrait;
 
      /**
      * Declare table
@@ -26,6 +27,21 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'fullname', 'email', 'password', 'birthday', 'address', 'phone', 'image', 'is_admin'
+    ];
+
+    /**
+     * The attributes that can be search.
+     *
+     * @var array $searchableFields
+     */
+    protected $searchableFields = [
+        'columns' => [
+            'users.address',
+            'users.birthday',
+            'users.fullname',
+            'users.email',
+            'users.phone'
+        ]
     ];
 
     /**

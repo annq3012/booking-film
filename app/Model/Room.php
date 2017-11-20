@@ -79,4 +79,30 @@ class Room extends Model
     {
         return $this->hasMany(Seat::class);
     }
+
+    /**
+     * Value of pagination
+     */
+    const ROW_LIMIT = 10;
+
+
+    /**
+     * Value of type 2D
+     */
+    const TYPE_2D =1 ;
+
+    /**
+     * Value of type 3D
+     */
+    const TYPE_3D =2 ;
+
+    /**
+     * Value of type 4D
+     */
+    const TYPE_4D =3 ;
+
+    /**
+     * Value of type 5D
+     */
+    const TYPE_5D =4 ;
 }

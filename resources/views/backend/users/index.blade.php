@@ -22,6 +22,7 @@
 
             {{-- add button --}}
             <div class="contain-btn">
+                  <span class="pull-left ml-10" >@include('flash::message')</span>
                   <a class="btn btn-primary pull-right btn-add" href="{{ route('users.create')}}" id="btn-add-user">
                   <span class="fa fa-plus-circle"></span>
                   {{ __('Add user') }}

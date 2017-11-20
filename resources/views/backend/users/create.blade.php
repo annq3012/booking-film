@@ -1,34 +1,38 @@
 @extends('backend.layout.main')
 
-@section('title', __('Users Update Page'))
+@section('title', __('Users Create Page'))
 
 @section('content')
 <div class="content-wrapper">
   <div class="box box-primary">
             <div >
-              <h3 class="h-title">{{ __('Users Update') }}</h3>
+              <h3 class="h-title" >{{ __('Users Create') }}</h3>
               @include('flash::message')
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" method="POST" action="{{ route('users.update', $user->id ) }}" enctype="multipart/form-data">
+            <form role="form" method="POST" action="{{ route('users.store') }}" enctype="multipart/form-data">
               {{ csrf_field()}}
-              {{ method_field('PUT') }}
               <div class="box-body">
                 <div class="form-group">
                   <label for="fullname">{{ __('Fullname') }}</label>
-                  <input type="text" class="form-control {{ $errors->has('fullname') ? ' has-error' : '' }}" id="fullname" name="fullname" value="{{ old('fullname', $user->fullname) }}">
+                  <input type="text" class="form-control {{ $errors->has('fullname') ? ' has-error' : '' }}" id="fullname" name="fullname" placeholder="{{ __('Enter your name') }}" value="{{ old('fullname') }}">
                   <small class="text-danger">{{ $errors->first('fullname') }}</small>
                 </div>
                  <div class="form-group">
                   <label for="email">{{ __('Email address') }}</label>
-                  <input type="email" class="form-control {{ $errors->has('email') ? ' has-error' : '' }}" id="email" name="email" value="{{ $user->email }}" readonly>
+                  <input type="email" class="form-control {{ $errors->has('email') ? ' has-error' : '' }}" id="email" name="email" placeholder="{{ __('Enter email') }}" value="{{ old('email') }}">
                   <small class="text-danger">{{ $errors->first('email') }}</small>
                 </div>
                 <div class="form-group">
                   <label for="password">{{ __('Password') }}</label>
-                  <input type="password" class="form-control {{ $errors->has('password') ? ' has-error' : '' }}" id="password" name="password" placeholder="{{ __('Enter your password you want to change') }}">
+                  <input type="password" class="form-control {{ $errors->has('password') ? ' has-error' : '' }}" id="password" name="password" placeholder="{{ __('Enter password') }}">
                   <small class="text-danger">{{ $errors->first('password') }}</small>
+                </div>
+                <div class="form-group">
+                  <label for="password_confirmation">{{ __('Confirm Password') }}</label>
+                  <input type="password" class="form-control {{ $errors->has('confirm-password') ? ' has-error' : '' }}" id="password_confirmation" name="password_confirmation" placeholder="{{ __('Retype password') }}">
+                  <small class="text-danger">{{ $errors->first('confirm-password') }}</small>
                 </div>
                 <div class="form-group">
                   <label>{{ __('BirthDay') }}:</label>
@@ -36,7 +40,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-calendar"></i>
                     </div>
-                    <input type="text" class="form-control {{ $errors->has('birthday') ? ' has-error' : '' }}" name="birthday" value="{{ old('birthday', $user->birthday) }}">
+                    <input type="date" class="form-control {{ $errors->has('birthday') ? ' has-error' : '' }}" name="birthday" value="{{ old('birthday') }}">
                   </div>
                    <small class="text-danger">{{ $errors->first('birthday') }}</small>
                   <!-- /.input group -->
@@ -48,7 +52,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-map"></i>
                     </div>
-                    <input type="text" class="form-control {{ $errors->has('address') ? ' has-error' : '' }}" name="address" value="{{ old('address', $user->address) }}">
+                    <input type="text" class="form-control {{ $errors->has('address') ? ' has-error' : '' }}" name="address" value="{{ old('address') }}">
                   </div>
                    <small class="text-danger">{{ $errors->first('address') }}</small>
                   <!-- /.input group -->
@@ -60,21 +64,24 @@
                     <div class="input-group-addon">
                       <i class="fa fa-phone"></i>
                     </div>
-                    <input type="text" class="form-control {{ $errors->has('phone') ? ' has-error' : '' }}" name="phone" value="{{ old('phone', $user->phone) }}">
+                    <input type="text" class="form-control {{ $errors->has('phone') ? ' has-error' : '' }}" name="phone" value="{{ old('phone') }}">
                   </div>
                    <small class="text-danger">{{ $errors->first('phone') }}</small>
                   <!-- /.input group -->
                 </div>
                 <div class="form-group ">
                   <label for="image">{{ __('File input')}}</label>
-                  <input type="file" id="image" name="image" value="{{$user->image}}">
+                  <input type="file" id="image" name="image">
                 </div>
                 <div class="form-group">
-                  @if ($user->is_admin == App\Model\User::ROLE_ADMIN)
-                  <span class="btn btn-warning">Admin</span>
-                  @else
-                    <span class="btn btn-default">User</span>
-                  @endif
+                  <label>
+                    <label for="admin">Admin</label>
+                    <input type="radio" id="admin" class="flat-red" name="is_admin" checked value="{{App\Model\User::ROLE_ADMIN}}">
+                  </label>
+                  <label>
+                    <label for="user">User</label>
+                    <input type="radio" id="user" class="flat-red" name="is_admin" value="{{App\Model\User::ROLE_USER}}">
+                  </label>
                 </div>
               </div>
               <!-- /.box-body -->

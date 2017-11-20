@@ -22,6 +22,7 @@
 
             {{-- add button --}}
             <div class="contain-btn">
+                  <span class="pull-left ml-10" >@include('flash::message')</span>
                   <a class="btn btn-primary pull-right btn-add" href="{{ route('users.create')}}" id="btn-add-user">
                   <span class="fa fa-plus-circle"></span>
                   {{ __('Add user') }}
@@ -52,7 +53,7 @@
                   <td> {{ $user->birthday }}</td>
                   <td>{{ $user->address }}</td>
                   <td class="text-center">
-                    <form method="POST" action=" {{ route('users.updateRole', $user->id) }} ">
+                    <form method="POST" action=" {{ route('users.updateRole', $user) }} ">
                       {!! csrf_field() !!}
                       {{ method_field('PUT') }}
                       @if ($user->is_admin == App\Model\User::ROLE_ADMIN)
@@ -64,7 +65,7 @@
                   </td>
                   <td align="center">
                     <div class="btn-option text-center">
-                      <a href="{{ route('users.edit', $user->id) }}"  class="btn-edit fa fa-pencil-square-o btn-custom-option pull-left" >
+                      <a href="{{ route('users.edit', $user) }}"  class="btn-edit fa fa-pencil-square-o btn-custom-option pull-left" >
                       </a>
                       <form method="POST" action="" class="inline">
                         <button type="submit" 

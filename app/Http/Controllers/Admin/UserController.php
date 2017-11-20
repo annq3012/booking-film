@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+
 use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\CreateUserRequest;
 use App\Model\User;
 
 class UserController extends Controller
@@ -31,13 +33,12 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id id of user
+     * @param int $user object of user
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        $user = User::findOrFail($id);
         return view('backend.users.update', compact('user'));
     }
 
@@ -45,18 +46,17 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\UpdateRequest $request request to update
-     * @param int                            $id      id of user
+     * @param int                            $user    object of user
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUserRequest $request, $id)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        $user = User::findOrFail($id);
         $input = $request->all();
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $fileName = config('image.name_prefix') . "-" . $file->hashName();
-            $file->move(config('image.users.path_uplo'), $fileName);
+            $file->move(config('image.users.path_upload'), $fileName);
             $input['image'] = $fileName;
         }
         if ($user->update($input)) {
@@ -71,19 +71,49 @@ class UserController extends Controller
     /**
      * Update role of user.
      *
-     * @param int $id id of user
+     * @param int $user object of user
      *
      * @return \Illuminate\Http\Response
      */
-    public function updateRole($id)
+    public function updateRole(User $user)
     {
-        $user = User::findOrFail($id);
         if ($user->is_admin == User::ROLE_ADMIN) {
             $user->update(['is_admin' => User::ROLE_USER]);
         } else {
             $user->update(['is_admin' => User::ROLE_ADMIN]);
         }
-        /*flash(__('Change role successful!'))->success();*/
+        return redirect()->route('users.index');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('backend.users.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function store(CreateUserRequest $request)
+    {
+        $users = new User($request->all());
+        if ($request->hasFile('image')) {
+            $users->image = config('image.name_prefix') .'-'. $request->image->hashName();
+            $request->file('image')->move(config('image.users.path_upload'), $users->image);
+        }
+        if ($users->save()) {
+            flash(__('Creation successful!'))->success();
+        } else {
+            flash(__('Creation failed!'))->error();
+        }
         return redirect()->route('users.index');
     }
 }

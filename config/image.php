@@ -1,8 +1,7 @@
 <?php
-
 return [
-    'name_prefix' => date("Ymd"),
+    'name_prefix' => date('Ymd'),
     'users' => [
-        'path' => 'images/user/',
+        'path_upload' => 'images/user/'
     ],
 ];

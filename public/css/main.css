@@ -1,6 +1,9 @@
 .btn-add {
 	margin: 10px;
 }
+.btn-reset {
+    margin-left: 10px;
+}
 .h-title {
 	color: green;
 	font-weight: bold;

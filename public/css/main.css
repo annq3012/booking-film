@@ -42,3 +42,49 @@
 .ml-10 {
     margin-left: 10px;
 }
+/*search*/
+.form-search{
+    width: 80%;
+    margin-bottom: 5px;
+}
+.input-search {
+    width: 50%;
+    border: 2px solid #ccc;
+    font-size: 16px;
+    float:left;
+}
+.container-search {
+
+}
+.btn-search {
+
+}
+/*end search*/
+.format-2D {
+    background-color: violet;
+    padding: 10px;
+    color:white;
+    font-weight: bold; 
+    border-radius: 5px;
+}
+.format-3D {
+    background-color: green;
+    padding: 10px;
+    color:white;
+    font-weight: bold; 
+    border-radius: 5px;
+}
+.format-4D {
+    background-color: blue;
+    padding: 10px;
+    color:white;
+    font-weight: bold;
+    border-radius: 5px; 
+}
+.format-5D {
+    background-color: red;
+    padding: 10px;
+    color:white;
+    font-weight: bold;
+    border-radius: 5px; 
+}

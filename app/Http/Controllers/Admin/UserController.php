@@ -27,7 +27,9 @@ class UserController extends Controller
             'image',
             'is_admin',
         ];
-        $users = User::select($columns)->paginate(User::ROW_LIMIT);
+        $users = User::search()
+                     ->select($columns)->paginate(User::ROW_LIMIT);
+        $users->appends(['search' => request('search')]);
         return view('backend.users.index', compact('users'));
     }
 

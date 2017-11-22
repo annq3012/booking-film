@@ -32,9 +32,7 @@
                   <span class="fa fa-plus-circle"></span>
                   {{ __('Add user') }}
                   </a>
-              </div>
             {{-- end add button --}}
-
             <div class="box-body">
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
@@ -58,7 +56,7 @@
                   <td> {{ $user->birthday }}</td>
                   <td>{{ $user->address }}</td>
                   <td class="text-center">
-                    <form method="POST" action="">
+                    <form method="POST" action=" {{ route('users.updateRole', $user) }} ">
                       {!! csrf_field() !!}
                       {{ method_field('PUT') }}
                       @if ($user->is_admin == App\Model\User::ROLE_ADMIN)
@@ -70,7 +68,7 @@
                   </td>
                   <td align="center">
                     <div class="btn-option text-center">
-                      <a href=""  class="btn-edit fa fa-pencil-square-o btn-custom-option pull-left" >
+                      <a href="{{ route('users.edit', $user) }}"  class="btn-edit fa fa-pencil-square-o btn-custom-option pull-left" >
                       </a>
                       <form method="POST" action="" class="inline">
                         <button type="submit" 

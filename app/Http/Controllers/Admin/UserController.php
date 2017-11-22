@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\CreateUserRequest;
 use App\Model\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -31,12 +32,33 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Remove the specified resource from storage.
      *
      * @param int $user object of user
      *
      * @return \Illuminate\Http\Response
      */
+    public function destroy(User $user)
+    {
+        if (Auth::user()->id == $user->id) {
+            flash(__('User is logging! Can\'t delete this user!'))->warning();
+            return redirect()->back()->withInput();
+        } else {
+            if ($user->delete()) {
+                flash(__('Deletion successful!'))->success();
+            } else {
+                flash(__('Deletion failed!'))->error();
+            }
+        }
+    }
+
+    /**
+    * Show the form for editing the specified resource.
+    *
+    * @param int $user object of user
+    *
+    * @return \Illuminate\Http\Response
+    */
     public function edit(User $user)
     {
         return view('backend.users.update', compact('user'));

@@ -26,4 +26,21 @@ class RoomController extends Controller
                     ->paginate(Room::ROW_LIMIT);
          return view('backend.rooms.index', compact('rooms'));
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param int $room object of rooms
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Room $room)
+    {
+        if ($room->delete()) {
+            flash(__('Deletion successful!'))->success();
+        } else {
+            flash(__('Deletion failed!'))->error();
+        }
+        return redirect()->route('rooms.index');
+    }
 }

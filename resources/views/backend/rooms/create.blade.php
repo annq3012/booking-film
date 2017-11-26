@@ -5,7 +5,7 @@
 @section('content')
 <div class="content-wrapper">
   <div class="box box-primary">
-            <div >
+            <div>
               <h3 class="h-title" >{{ __('Rooms Create') }}</h3>
               @include('flash::message')
             </div>
@@ -15,9 +15,9 @@
               {{ csrf_field()}}
               <div class="box-body">
                 <div class="form-group">
-                  <label for="fullname">{{ __('Room') }}</label>
-                  <input type="text" class="form-control {{ $errors->has('fullname') ? ' has-error' : '' }}" id="fullname" name="fullname" placeholder="{{ __('Enter name of room') }}" value="{{ old('fullname') }}">
-                  <small class="text-danger">{{ $errors->first('fullname') }}</small>
+                  <label for="name">{{ __('Room') }}</label>
+                  <input type="text" class="form-control {{ $errors->has('name') ? ' has-error' : '' }}" id="name" name="name" placeholder="{{ __('Enter name of room') }}" value="{{ old('name') }}">
+                  <small class="text-danger">{{ $errors->first('name') }}</small>
                 </div>
                 <div class="form-group">
                   <label for="type">{{ __('Type of Room:') }}</label>
@@ -30,81 +30,52 @@
                 </div>
                 <div class="form-group">
                   <label for="city">{{ __('Cities:') }}</label>
-                  <select name="city" id="city" class="{{ $errors->has('city') ? ' has-error' : '' }}">
-                  @foreach ($cinemas as $cinema)
-                   <option value="{{$cinema->city->id}}">{{$cinema->city->city}}</option>
+                  <select name="city" id="city" class="list-cities {{ $errors->has('city') ? ' has-error' : '' }}">
+                    <option value="0">{{ __('Choose')}}</option>
+                  @foreach ($cities as $city)
+                   <option value="{{$city->id}}">{{$city->city}}</option>
                   @endforeach
                   </select>
                   <small class="text-danger">{{ $errors->first('city') }}</small>
                 </div>
                 <div class="form-group">
-                  <label for="cinema">{{ __('Cinemas:') }}</label>
-                  <select name="cinema" id="cinema" class="{{ $errors->has('cinema') ? ' has-error' : '' }}">
-                  @foreach ($cinemas as $cinema)
-                   <option value="{{$cinema->id}}">{{$cinema->name}}</option>
-                  @endforeach
+                  <label for="cinema_id">{{ __('Cinemas:') }}</label>
+                  <select name="cinema_id" id="cinema_id" class="form-group {{ $errors->has('cinema_id') ? ' has-error' : '' }}">
+                    <option value="0">{{__('Choose')}}</option>
                   </select>
-                  <small class="text-danger">{{ $errors->first('cinema') }}</small>
+                  <small class="text-danger">{{ $errors->first('cinema_id') }}</small>
                 </div>
                 <div class="form-group">
-                  <label>{{ __('BirthDay') }}:</label>
+                  <label>{{ __('Max Seats') }}:</label>
                   <div class="input-group">
-                    <div class="input-group-addon">
-                      <i class="fa fa-calendar"></i>
+                    <div class="col-md-8">
+                      <input type="text" class="form-control pull-left {{ $errors->has('max_seats') ? ' has-error' : '' }}" name="max_seats" id="max_seats" value="{{ old('max_seats') }}">
                     </div>
-                    <input type="date" class="form-control {{ $errors->has('birthday') ? ' has-error' : '' }}" name="birthday" value="{{ old('birthday') }}">
-                  </div>
-                   <small class="text-danger">{{ $errors->first('birthday') }}</small>
-                  <!-- /.input group -->
-                </div>
-                {{-- address --}}
-                <div class="form-group">
-                  <label>{{ __('Address') }}:</label>
-                  <div class="input-group">
-                    <div class="input-group-addon">
-                      <i class="fa fa-map"></i>
+                    <div class="col-md-1">
+                      <button type="button" id="btn-add-seats" name="btn-add-seats" class="s-15 pull-right">
+                        <span class="fa fa-plus-circle"></span>
+                      </button>
                     </div>
-                    <input type="text" class="form-control {{ $errors->has('address') ? ' has-error' : '' }}" name="address" value="{{ old('address') }}">
+                    <div class="message"></div>
                   </div>
-                   <small class="text-danger">{{ $errors->first('address') }}</small>
-                  <!-- /.input group -->
-                </div>
-                <!-- phone mask -->
-                <div class="form-group">
-                  <label>{{ __('Phone') }}:</label>
-                  <div class="input-group">
-                    <div class="input-group-addon">
-                      <i class="fa fa-phone"></i>
-                    </div>
-                    <input type="text" class="form-control {{ $errors->has('phone') ? ' has-error' : '' }}" name="phone" value="{{ old('phone') }}">
-                  </div>
-                   <small class="text-danger">{{ $errors->first('phone') }}</small>
-                  <!-- /.input group -->
-                </div>
-                <div class="form-group ">
-                  <label for="image">{{ __('File input')}}</label>
-                  <input type="file" id="image" name="image">
+                   <small class="text-danger">{{ $errors->first('max_seats') }}</small>
                 </div>
                 <div class="form-group">
-                  <label>
-                    <label for="admin">Admin</label>
-                    <input type="radio" id="admin" class="flat-red" name="is_admin" checked value="{{App\Model\User::ROLE_ADMIN}}">
-                  </label>
-                  <label>
-                    <label for="user">User</label>
-                    <input type="radio" id="user" class="flat-red" name="is_admin" value="{{App\Model\User::ROLE_USER}}">
-                  </label>
-                </div>
-              </div>
-              <!-- /.box-body -->
+                  <label> {{ __('Max Seats Rows') }}</label>
+                  <div id="list_seats">
 
+                  </div>
+                </div>
+               <!-- /.box-body -->
+             </div>
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary pull-right">{{ __('Submit') }}</button>
                 <a href="{{ route('rooms.index') }}" class="btn btn-default pull-left">{{ __('Back') }}</a>
                 <button type="reset" class="btn btn-warning pull-left btn-reset">{{ __('Reset') }}</button>
               </div>
+          
             </form>
           </div>
-          <div class="row"></div>
+           <div class="row"></div>
 </div>
 @endsection

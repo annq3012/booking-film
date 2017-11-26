@@ -2,6 +2,6 @@
 return [
     'name_prefix' => date('Ymd'),
     'users' => [
-        'path' => 'images/user/'
+        'path_upload' => 'images/user/'
     ],
 ];

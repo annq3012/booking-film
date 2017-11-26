@@ -16,10 +16,12 @@ Route::get('/', function () {
 });
 Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'admin'], function() {
 	Route::get('/', 'AdminController@index')->name('admin.index');
+	Route::resource('users', 'UserController');
 	Route::resource('/users', 'UserController');
 	Route::resource('/rooms', 'RoomController');
+	Route::put('/users/{user}/role', 'UserController@updateRole')->name('users.updateRole');
+	Route::get('/rooms/{id}/city', 'AjaxController@loadCinemas')->name('rooms.loadCinemas');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');

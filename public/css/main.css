@@ -45,3 +45,29 @@
 .ml-10 {
     margin-left: 10px;
 }
+/*search*/
+.form-search{
+    width: 80%;
+    margin-bottom: 5px;
+}
+.input-search {
+    width: 50%;
+    border: 2px solid #ccc;
+    font-size: 16px;
+    float:left;
+}
+.container-search {
+
+}
+.btn-search {
+
+}
+/*end search*/
+.s-15{
+    font-size: 20px;
+}
+.fs {
+    font-size: :20px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}

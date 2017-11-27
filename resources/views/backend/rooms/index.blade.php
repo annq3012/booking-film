@@ -50,17 +50,7 @@
                   <td>{{ $room->name }}
                   </td>
                   <td>{{ $room->cinema->name }}</td>
-                  <td class="text-center">
-                      @if ($room->type == App\Model\Room::TYPE_2D)
-                      <span type="submit" class="btn btn-success btn-sm">{{ __('2D') }}</span>
-                      @elseif ($room->type == App\Model\Room::TYPE_3D)
-                        <span type="submit" class="btn btn-primary btn-sm">{{ __('3D') }}</span>
-                      @elseif ($room->type == App\Model\Room::TYPE_4D)
-                        <span type="submit" class="btn btn-warning btn-sm">{{ __('4D') }}</span>
-                      @else
-                        <span type="submit" class="btn btn-danger btn-sm">{{ __('5D') }}</span>
-                      @endif
-                  </td>
+                  <td class="text-center"><span class="format-{{$room->type_label}}">{{$room->type_label}}</span></td>
                   <td>{{ $room->max_seats }}</td>
                   <td align="center">
                     <div class="btn-option text-center">

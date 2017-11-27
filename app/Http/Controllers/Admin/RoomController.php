@@ -41,6 +41,6 @@ class RoomController extends Controller
         } else {
             flash(__('Deletion failed!'))->error();
         }
-        return redirect()->route('rooms.index');
+        return redirect()->back()->withInput();
     }
 }

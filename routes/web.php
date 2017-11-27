@@ -18,6 +18,7 @@ Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'admin'], f
 	Route::get('/', 'AdminController@index')->name('admin.index');
 	Route::resource('users', 'UserController');
 	Route::resource('/users', 'UserController');
+	Route::resource('/rooms', 'RoomController');
 	Route::put('/users/{user}/role', 'UserController@updateRole')->name('users.updateRole');
 });
 

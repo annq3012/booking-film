@@ -22,8 +22,9 @@ class RoomController extends Controller
             'type',
             'max_seats',
          ];
-         $rooms = Room::select($columns)
-                    ->paginate(Room::ROW_LIMIT);
+         $rooms = Room::search()
+                        ->select($columns)
+                        ->paginate(Room::ROW_LIMIT);
          return view('backend.rooms.index', compact('rooms'));
     }
 }

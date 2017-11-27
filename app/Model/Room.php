@@ -2,13 +2,14 @@
 
 namespace App\Model;
 
+use App\Libraries\Traits\SearchTrait;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Room extends Model
 {
-    use SoftDeletes, Sluggable;
+    use SoftDeletes, Sluggable, SearchTrait;
 
     /**
      * Return the sluggable configuration array for this model.
@@ -38,6 +39,21 @@ class Room extends Model
      */
     protected $fillable = [
         'name', 'type', 'max_seats', 'cinema_id'
+    ];
+
+    /**
+     * The attributes that can be search.
+     *
+     * @var array $searchableFields
+     */
+    protected $searchableFields = [
+        'columns' => [
+            'rooms.id',
+            'rooms.name',
+            'rooms.cinema_id',
+            'rooms.type',
+            'rooms.max_seats',
+         ]
     ];
 
     /**
@@ -89,20 +105,43 @@ class Room extends Model
     /**
      * Value of type 2D
      */
-    const TYPE_2D =1 ;
+    const TYPE_2D = 1 ;
 
     /**
      * Value of type 3D
      */
-    const TYPE_3D =2 ;
+    const TYPE_3D = 2 ;
 
     /**
      * Value of type 4D
      */
-    const TYPE_4D =3 ;
+    const TYPE_4D = 3 ;
 
     /**
      * Value of type 5D
      */
-    const TYPE_5D =4 ;
+    const TYPE_5D = 4 ;
+
+    /**
+     * Get status of a reservation.
+     *
+     * @return string
+     */
+    public function getTypeLabelAttribute()
+    {
+        switch ($this->attributes['type']) {
+            case self::TYPE_2D:
+                return  __('2D');
+                break;
+            case self::TYPE_3D:
+                return  __('3D');
+                break;
+            case self::TYPE_4D:
+                return __('4D');
+                break;
+            default:
+                return __('5D');
+                break;
+        }
+    }
 }

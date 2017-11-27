@@ -12,13 +12,16 @@ class CityController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param City $city object off city
+     * @param \Illuminate\Http\Request $request request
+     * @param City                     $city    object of city
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(City $city)
+    public function show(Request $request, City $city)
     {
         $cinemas = Cinema::where('city_id', '=', $city->id)->get();
-        return response()->json(['cinemas' => $cinemas], 200);
+        if ($request->ajax()) {
+            return response()->json(['cinemas' => $cinemas], 200);
+        }
     }
 }

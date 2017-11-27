@@ -80,6 +80,20 @@ class Room extends Model
         return $this->hasMany(Seat::class, 'room_id');
     }
 
+     /**
+     * Return the room configuration array for this model.
+     *
+     * @return array
+    */
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($room) {
+            $room->seats()->delete();
+        });
+    }
+
     /**
      * Value of pagination
      */

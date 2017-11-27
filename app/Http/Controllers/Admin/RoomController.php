@@ -21,16 +21,16 @@ class RoomController extends Controller
     public function index()
     {
 
-         $columns = [
-            'id',
-            'name',
-            'cinema_id',
-            'type',
-            'max_seats',
-         ];
-         $rooms = Room::select($columns)
-                    ->paginate(Room::ROW_LIMIT);
-         return view('backend.rooms.index', compact('rooms'));
+        $columns = [
+        'id',
+        'name',
+        'cinema_id',
+        'type',
+        'max_seats',
+        ];
+        $rooms = Room::select($columns)
+                ->paginate(Room::ROW_LIMIT);
+        return view('backend.rooms.index', compact('rooms'));
     }
 
     /**
@@ -41,15 +41,15 @@ class RoomController extends Controller
     public function create()
     {
         $columns = [
-            'id',
-            'name',
-            'cinema_id',
-            'type',
-            'max_seats',
+        'id',
+        'name',
+        'cinema_id',
+        'type',
+        'max_seats',
         ];
         $cities = City::select('id', 'city')->get();
         $rooms = Room::select($columns)->with('seats')->
-                    get();
+                get();
         return view('backend.rooms.create', compact('rooms', 'cities'));
     }
 
@@ -100,5 +100,21 @@ class RoomController extends Controller
             flash(__('Create failure'))->error();
             return redirect()->back()->withInput();
         }
+    }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param int $room object of rooms
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Room $room)
+    {
+        if ($room->delete()) {
+            flash(__('Deletion successful!'))->success();
+        } else {
+            flash(__('Deletion failed!'))->error();
+        }
+        return redirect()->back()->withInput();
     }
 }

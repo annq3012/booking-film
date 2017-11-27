@@ -106,7 +106,7 @@ class Room extends Model
     const TYPE_5D = 4;
 
     /**
-     * type of rooms statuses
+     * Type of rooms statuses
      *
      * @type array
      */
@@ -137,6 +137,29 @@ class Room extends Model
                 break;
             default:
                 return __('2D');
+                break;
+        }
+    }
+
+    /**
+     * Get status of a reservation.
+     *
+     * @return string
+     */
+    public function getTypeLabelAttribute()
+    {
+        switch ($this->attributes['type']) {
+            case self::TYPE_2D:
+                return  __('2D');
+                break;
+            case self::TYPE_3D:
+                return  __('3D');
+                break;
+            case self::TYPE_4D:
+                return __('4D');
+                break;
+            default:
+                return __('5D');
                 break;
         }
     }

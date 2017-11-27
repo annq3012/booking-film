@@ -9,6 +9,7 @@ use App\Model\City;
 use App\Model\Room;
 use App\Model\Seat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RoomController extends Controller
 {
@@ -19,16 +20,17 @@ class RoomController extends Controller
      */
     public function index()
     {
-        $columns = [
+
+         $columns = [
             'id',
             'name',
             'cinema_id',
             'type',
             'max_seats',
-        ];
-        $rooms = Room::select($columns)
+         ];
+         $rooms = Room::select($columns)
                     ->paginate(Room::ROW_LIMIT);
-        return view('backend.rooms.index', compact('rooms'));
+         return view('backend.rooms.index', compact('rooms'));
     }
 
     /**
@@ -60,38 +62,41 @@ class RoomController extends Controller
      */
     public function store(CreateRoomRequest $request)
     {
-        //create room
-        $rooms = new Room($request->except(['seats[]', 'city']));
-        $result_room = $rooms->save();
-        $array_seats = array();
-        $array_list_seats = array();
-        if (isset($request->seats)) {
-            foreach ($request->seats as $key => $seat){
-                $array_seats['y_axist'] = $key;
-                foreach ($seat as $key => $value) {
-                    $array_seats[$key] = $value;
+        DB::beginTransaction();
+        try {
+         //create room
+            $rooms = new Room($request->except(['seats[]', 'city']));
+            $resultRoom = $rooms->save();
+            $arraySeats = [];
+            $arrayListSeats = [];
+            if ($request->has('seats')) {
+                foreach ($request->seats as $yAxist => $seat) {
+                    $arraySeats['y_axist'] = $yAxist;
+                    foreach ($seat as $attribute => $value) {
+                        $arraySeats[$attribute] = $value;
+                    }
+                    $arraySeats['room_id'] = $rooms['id'];
+                    array_push($arrayListSeats, $arraySeats);
+                    $arraySeats = [];
                 }
-                $array_seats['room_id'] = $rooms['id'];
-                array_push($array_list_seats, $array_seats);
-                $array_seats = array();
             }
-        }
-        foreach ($array_list_seats as $seats => $value) {
-                var_dump($value['x_axist']);
-
-            for($i = 1; $i <= $value['x_axist']; $i++) {
-                $seat = new Seat();
-                $seat->y_axist = $value['y_axist'];
-                $seat->x_axist = $i;
-                $seat->type = $value['type'];
-                $seat->room_id = $value['room_id'];
-                $result_seat = $seat->save();
+            foreach ($arrayListSeats as $seats) {
+                for ($i = 1; $i <= $seats['x_axist']; $i++) {
+                    $seat = new Seat();
+                    $seat->y_axist = $seats['y_axist'];
+                    $seat->x_axist = $i;
+                    $seat->type = $seats['type'];
+                    $seat->room_id = $seats['room_id'];
+                    $resultSeat = $seat->save();
+                }
             }
-        }
-        if ($result_room && $result_seat){
-            flash(__('Create success'))->success();
-           return redirect()->route('rooms.index');
-        } else {
+            if ($resultRoom && $resultSeat) {
+                DB::commit();
+                flash(__('Create success'))->success();
+                return redirect()->route('rooms.index');
+            }
+        } catch (Exception $e) {
+            DB::rollback();
             flash(__('Create failure'))->error();
             return redirect()->back()->withInput();
         }

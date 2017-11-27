@@ -4,21 +4,21 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Model\Cinema;
+use App\Model\City;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
-class AjaxController extends Controller
+class CityController extends Controller
 {
     /**
-     * Load cinemas from city.
+     * Display the specified resource.
      *
-     * @param int $id id of city
+     * @param City $city object off city
      *
      * @return \Illuminate\Http\Response
      */
-    public function loadCinemas($id)
+    public function show(City $city)
     {
-        $cinemas = Cinema::where('city_id', '=', $id)->get();
+        $cinemas = Cinema::where('city_id', '=', $city->id)->get();
         return response()->json(['cinemas' => $cinemas], 200);
     }
 }

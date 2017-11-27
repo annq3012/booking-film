@@ -24,11 +24,12 @@ $(document).ready(function(){
     $('#city').change(function (event) {
         let id = this.value;
         $.ajax({
-            url:'../rooms/'+id+'/city',
+            url: baseURL+'/admin/cities/'+id,
             type: 'get',
             dataType: 'text',
             success : function (result){
                 let data = JSON.parse(result);
+                $('#cinema_id option[value!="0"]').remove();
                 $.each(data.cinemas, function(i, $value) {
                     let $option = $("<option></option>");
                     $option.html($value.name);

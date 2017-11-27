@@ -49,21 +49,7 @@
                   <td>{{ $room->name }}
                   </td>
                   <td>{{ $room->cinema->name }}</td>
-                  <td class="text-center">
-                    <form method="POST" action="">
-                      {!! csrf_field() !!}
-                      {{ method_field('PUT') }}
-                      @if ($room->type == App\Model\Room::TYPE_2D)
-                      <button type="submit" class="btn btn-success btn-sm">{{ __('2D') }}</button>
-                      @elseif ($room->type == App\Model\Room::TYPE_3D)
-                        <button type="submit" class="btn btn-primary btn-sm">{{ __('3D') }}</button>
-                      @elseif ($room->type == App\Model\Room::TYPE_4D)
-                        <button type="submit" class="btn btn-warning btn-sm">{{ __('4D') }}</button>
-                      @else
-                        <button type="submit" class="btn btn-danger btn-sm">{{ __('5D') }}</button>
-                      @endif
-                    </form>
-                  </td>
+                  <td class="text-center"><span class="format-{{$room->type_label}}">{{$room->type_label}}</span></td>
                   <td>{{ $room->max_seats }}</td>
                   <td align="center">
                     <div class="btn-option text-center">

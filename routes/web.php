@@ -20,7 +20,7 @@ Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'admin'], f
 	Route::resource('/users', 'UserController');
 	Route::resource('/rooms', 'RoomController');
 	Route::put('/users/{user}/role', 'UserController@updateRole')->name('users.updateRole');
-	Route::get('/rooms/{id}/city', 'AjaxController@loadCinemas')->name('rooms.loadCinemas');
+	Route::resource('/cities', 'CityController');
 });
 
 Auth::routes();

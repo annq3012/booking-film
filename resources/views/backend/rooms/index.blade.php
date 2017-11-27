@@ -23,6 +23,7 @@
             {{-- add button --}}
             <div class="contain-btn">
                   <span class="pull-left ml-10" >@include('flash::message')</span>
+                  @include('backend.layout.partials.modal')
                   <a class="btn btn-primary pull-right btn-add" href="{{ route('rooms.create')}}" id="btn-add-room">
                   <span class="fa fa-plus-circle"></span>
                   {{ __('Add Room') }}
@@ -55,9 +56,13 @@
                     <div class="btn-option text-center">
                       <a href=""  class="btn-edit fa fa-pencil-square-o btn-custom-option pull-left" >
                       </a>
-                      <form method="POST" action="" class="inline">
+                      <form method="POST" action="{{ route('rooms.destroy', $room) }}" class="inline">
+                        {!! csrf_field() !!}
+                        {{ method_field('DELETE') }}
                         <button type="submit" 
-                          class="btn-custom-option btn btn-delete-item fa fa-trash-o">
+                          class="btn-custom-option btn btn-delete-item fa fa-trash-o"
+                          data-title="{{ __('Confirm deletion!') }}"
+                          data-confirm="{{ __('Are you sure you want to delete?') }}">
                         </button>
                       </form> 
                     </div>

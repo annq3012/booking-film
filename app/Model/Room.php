@@ -2,13 +2,14 @@
 
 namespace App\Model;
 
+use App\Libraries\Traits\SearchTrait;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Room extends Model
 {
-    use SoftDeletes, Sluggable;
+    use SoftDeletes, Sluggable, SearchTrait;
 
     /**
      * Return the sluggable configuration array for this model.
@@ -38,6 +39,21 @@ class Room extends Model
      */
     protected $fillable = [
         'name', 'type', 'max_seats', 'cinema_id'
+    ];
+
+    /**
+     * The attributes that can be search.
+     *
+     * @var array $searchableFields
+     */
+    protected $searchableFields = [
+        'columns' => [
+            'rooms.id',
+            'rooms.name',
+            'rooms.cinema_id',
+            'rooms.type',
+            'rooms.max_seats',
+         ]
     ];
 
     /**

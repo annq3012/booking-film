@@ -54,6 +54,9 @@
 
 </div>
 <!-- ./wrapper -->
+<script>
+   var baseURL = "{{ url('') }}";
+</script>
  @include('backend.layout.partials.js')
 
 </body>

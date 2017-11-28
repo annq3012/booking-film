@@ -1,6 +1,9 @@
 .btn-add {
 	margin: 10px;
 }
+.btn-reset {
+    margin-left: 10px;
+}
 .h-title {
 	color: green;
 	font-weight: bold;
@@ -60,6 +63,14 @@
 
 }
 /*end search*/
+.s-15{
+    font-size: 20px;
+}
+.fs {
+    font-size: :20px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
 .format-2D {
     background-color: violet;
     padding: 10px;

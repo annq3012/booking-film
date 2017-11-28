@@ -20,6 +20,7 @@ Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'admin'], f
 	Route::resource('/users', 'UserController');
 	Route::resource('/rooms', 'RoomController');
 	Route::put('/users/{user}/role', 'UserController@updateRole')->name('users.updateRole');
+	Route::resource('/cities', 'CityController');
 });
 
 Auth::routes();

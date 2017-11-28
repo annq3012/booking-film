@@ -54,7 +54,7 @@
                   <td>{{ $room->max_seats }}</td>
                   <td align="center">
                     <div class="btn-option text-center">
-                      <a href=""  class="btn-edit fa fa-pencil-square-o btn-custom-option pull-left" >
+                      <a href="{{ route('rooms.edit', $room) }}"  class="btn-edit fa fa-pencil-square-o btn-custom-option pull-left" >
                       </a>
                       <form method="POST" action="{{ route('rooms.destroy', $room) }}" class="inline">
                         {!! csrf_field() !!}

@@ -52,6 +52,7 @@ class UserController extends Controller
                 flash(__('Deletion failed!'))->error();
             }
         }
+        return redirect()->route('users.index');
     }
 
     /**

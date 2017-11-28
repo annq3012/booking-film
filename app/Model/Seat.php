@@ -33,4 +33,14 @@ class Seat extends Model
     {
         return $this->belongsTo(Room::class, 'room_id');
     }
+
+    /**
+    * Value of seats
+    */
+    const SEAT_MIN = 1;
+
+    /**
+    * Value of seats
+    */
+    const SEAT_MAX = 15;
 }

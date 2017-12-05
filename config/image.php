@@ -9,4 +9,7 @@ return [
     'users' => [
         'path_upload' => 'images/user/'
     ],
+    'films' => [
+        'path_upload' => 'images/film/'
+    ],
 ];

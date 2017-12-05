@@ -59,4 +59,19 @@ class Film extends Model
     {
         return $this->hasMany(Schedule::class, 'fiml_id');
     }
+
+    /**
+     * Value of pagination
+     */
+    const ROW_LIMIT = 10;
+
+    /**
+     * Value of actived user
+     */
+    const STATUS_ACTIVED = 1;
+
+    /**
+     * Value of disabled user
+     */
+    const STATUS_DISABLED = 0;
 }

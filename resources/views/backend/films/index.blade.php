@@ -27,12 +27,13 @@
                   </form>
               </div>
               <div class="contain-btn">
-                  <span class="pull-left ml-10" >@include('flash::message')</span>
                   @include('backend.layout.partials.modal')
                   <a class="btn btn-primary pull-right btn-add" href="{{ route('films.create')}}" id="btn-add-user">
                   <span class="fa fa-plus-circle"></span>
                   {{ __('Add film') }}
                   </a>
+              </div>
+            <div class="clr"><span class="pull-left ml-10" >@include('flash::message')</span></div>
             {{-- end add button --}}
             <div class="box-body">
               <table id="example2" class="table table-bordered table-hover">

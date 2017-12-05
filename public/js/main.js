@@ -155,7 +155,7 @@ $(document).ready(function(){
                 oldAmount = amount;
             }
         } else {
-            $(".message").html('<small style="color:red">Max Seats is not equal 10</small>');
+            $(".message").css('display', 'inline');
         }
     }); 
 })

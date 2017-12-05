@@ -49,7 +49,7 @@
                         <span class="fa fa-plus-circle"></span>
                       </button>
                     </div>
-                    <div class="message"></div>
+                    <div class="message" ><small> {{ __('Max Seats is not equal 10') }} </small></div>
                   </div>
                    <small class="text-danger">{{ $errors->first('max_seats') }}</small>
                 </div>

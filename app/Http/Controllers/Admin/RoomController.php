@@ -131,7 +131,7 @@ class RoomController extends Controller
     */
     public function edit(Room $room)
     {
-        $seats = Seat::select('id','y_axist', 'type', \DB::raw('count("y_axist") as count_seats'))
+        $seats = Seat::select('id', 'y_axist', 'type', \DB::raw('count("y_axist") as count_seats'))
                      ->where('room_id', $room->id)
                      ->groupBy('y_axist')
                      ->get();
@@ -147,7 +147,7 @@ class RoomController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\UpdateRequest $request request to update
-     * @param int                            $user    object of user
+     * @param int                            $room    object of rooms
      *
      * @return \Illuminate\Http\Response
      */
@@ -170,7 +170,7 @@ class RoomController extends Controller
                 }
             }
             // dd($arrayListSeats);
-            Seat::where('room_id', $room->id)->forceDelete();
+            Seat::where('room_id', $room->id)->delete();
             foreach ($arrayListSeats as $seats) {
                 for ($i = 1; $i <= $seats['x_axist']; $i++) {
                     $seat = new Seat();

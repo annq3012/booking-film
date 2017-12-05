@@ -21,17 +21,17 @@ class RoomController extends Controller
      */
     public function index()
     {
-
-        $columns = [
-        'id',
-        'name',
-        'cinema_id',
-        'type',
-        'max_seats',
-        ];
-        $rooms = Room::select($columns)
-                ->paginate(Room::ROW_LIMIT);
-        return view('backend.rooms.index', compact('rooms'));
+         $columns = [
+            'id',
+            'name',
+            'cinema_id',
+            'type',
+            'max_seats',
+         ];
+         $rooms = Room::search()
+                        ->select($columns)
+                        ->paginate(Room::ROW_LIMIT);
+         return view('backend.rooms.index', compact('rooms'));
     }
 
     /**

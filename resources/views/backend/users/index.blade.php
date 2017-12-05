@@ -27,7 +27,6 @@
                   </form>
               </div>
               <div class="contain-btn">
-                  <span class="pull-left ml-10" >@include('flash::message')</span>
                   @include('backend.layout.partials.modal')
                   <a class="btn btn-primary pull-right btn-add" href="{{ route('users.create')}}" id="btn-add-user">
                   <span class="fa fa-plus-circle"></span>
@@ -35,6 +34,7 @@
                   </a>
             {{-- end add button --}}
             <div class="box-body">
+              <div class="clr"><span class="pull-left ml-10" >@include('flash::message')</span></div>
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                   <tr align="center">

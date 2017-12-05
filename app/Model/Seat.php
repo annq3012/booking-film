@@ -3,11 +3,9 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Seat extends Model
 {
-    use SoftDeletes;
      /**
      * Declare table
      *

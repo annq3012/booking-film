@@ -103,3 +103,10 @@
     width: 50px;
     height:60px;
 }
+.message {
+    display: none;
+    color: red;
+}
+.clr{
+    clear:both;
+}

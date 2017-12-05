@@ -28,7 +28,6 @@
                   </form>
             </div>
             <div class="contain-btn">
-                  <span class="pull-left ml-10" >@include('flash::message')</span>
                   @include('backend.layout.partials.modal')
                   <a class="btn btn-primary pull-right btn-add" href="{{ route('rooms.create')}}" id="btn-add-room">
                   <span class="fa fa-plus-circle"></span>
@@ -36,7 +35,7 @@
                   </a>
             </div>
             {{-- end add button --}}
-
+            <div class="clr"><span class="pull-left ml-10" >@include('flash::message')</span></div>
             <div class="box-body">
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
@@ -60,7 +59,7 @@
                   <td>{{ $room->max_seats }}</td>
                   <td align="center">
                     <div class="btn-option text-center">
-                      <a href=""  class="btn-edit fa fa-pencil-square-o btn-custom-option pull-left" >
+                      <a href="{{ route('rooms.edit', $room) }}"  class="btn-edit fa fa-pencil-square-o btn-custom-option pull-left" >
                       </a>
                       <form method="POST" action="{{ route('rooms.destroy', $room) }}" class="inline">
                         {!! csrf_field() !!}

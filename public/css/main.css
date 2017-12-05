@@ -99,3 +99,10 @@
     font-weight: bold;
     border-radius: 5px; 
 }
+.message {
+    display: none;
+    color: red;
+}
+.clr{
+    clear:both;
+}

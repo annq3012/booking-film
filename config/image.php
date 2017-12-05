@@ -1,6 +1,11 @@
 <?php
 return [
     'name_prefix' => date('Ymd'),
+    'type_seat' => [
+      '1' => 'Normal',
+      '2' => 'VIP',
+      '3' => 'Couple',
+    ],
     'users' => [
         'path_upload' => 'images/user/'
     ],

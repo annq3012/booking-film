@@ -102,7 +102,7 @@ class UserController extends Controller
      */
     public function updateRole(User $user)
     {
-         if (Auth::user()->id == $user->id) {
+        if (Auth::user()->id == $user->id) {
             flash(__('User is logging! Can\'t change permission!'))->warning();
             return redirect()->back()->withInput();
         } else {

@@ -34,7 +34,7 @@
                   </a>
             {{-- end add button --}}
             <div class="box-body">
-              <div class="clr"><span class="pull-left ml-10" >@include('flash::message')</span></div>
+            <div class="clr"><span class="pull-left ml-10" >@include('flash::message')</span></div>
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                   <tr align="center">

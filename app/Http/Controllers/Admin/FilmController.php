@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateFilmRequest;
 use App\Model\Film;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FilmController extends Controller
 {
@@ -28,7 +29,19 @@ class FilmController extends Controller
      */
     public function create()
     {
-        return view('backend.films.create');
+        $technologies = Film::$technologies;
+        $rated = Film::$rated;
+        $actived = Film::STATUS_ACTIVED;
+        $disabled = Film::STATUS_DISABLED;
+        return view(
+            'backend.films.create',
+            compact(
+                'technologies',
+                'rated',
+                'actived',
+                'disabled'
+            )
+        );
     }
 
     /**

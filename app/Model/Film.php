@@ -101,24 +101,24 @@ class Film extends Model
      * @type array
      */
     public static $technologies = [
-        '2D' => self::TYPE_2D,
-        '3D' => self::TYPE_3D,
-        '4D' => self::TYPE_4D,
-        '5D' => self::TYPE_5D
+        self::TYPE_2D,
+        self::TYPE_3D,
+        self::TYPE_4D,
+        self::TYPE_5D
     ];
 
     /**
-     * Value of RATED 2D
+     * Value of RATED 13+
      */
     const RATED_13 = '13+';
 
     /**
-     * Value of RATED 3D
+     * Value of RATED 16+
      */
     const RATED_16 = '16+';
 
     /**
-     * Value of RATED 4D
+     * Value of RATED 18+
      */
     const RATED_18 = '18+';
 
@@ -128,9 +128,9 @@ class Film extends Model
      * @type array
      */
     public static $rated = [
-        '13+' => self::RATED_13,
-        '16+' => self::RATED_16,
-        '18+' => self::RATED_18,
+        self::RATED_13,
+        self::RATED_16,
+        self::RATED_18,
     ];
 
     /**

@@ -10,9 +10,9 @@ return [
         'path_upload' => 'images/user/'
     ],
     'films' => [
-        'path_upload' => 'images/film/'
-    ],
-    'no_image' => [
-        'path_no-image' => 'images/no-image.jpeg'
-    ],
+       'path_upload' => 'images/film/'
+	  ],
+	  'no_image' => [
+	      'path_no-image' => 'images/no-image.jpeg'
+	  ], 
 ];

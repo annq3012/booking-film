@@ -71,10 +71,10 @@
                   <td><img src="{{asset($urlFilm)}}" {{$urlFilm == ""}} class="images-film" name="image"></td>
                   <td>{{ $film->link }}</td>
                   <td class="text-center">
-                    <form method="POST" action=" {{-- {{ route('films.updateRole', $film) }} --}} ">
+                    <form method="POST" action=" {{ route('films.updateStatus', $film) }} ">
                       {!! csrf_field() !!}
                       {{ method_field('PUT') }}
-                      @if ($film->status == App\Model\Film::STATUS_ACTIVED)
+                      @if ($film->status == $actived)
                       <button type="submit" class="btn btn-warning btn-sm">{{ __('Active') }}</button>
                       @else
                         <button type="submit" class="btn btn-default btn-sm">{{ __('Disable') }}</button>

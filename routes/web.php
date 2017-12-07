@@ -22,6 +22,7 @@ Route::group(['namespace'=>'Admin', 'prefix'=>'admin', 'middleware'=>'admin'], f
 	Route::put('/users/{user}/role', 'UserController@updateRole')->name('users.updateRole');
 	Route::resource('/cities', 'CityController');
 	Route::resource('/films', 'FilmController');
+	Route::put('/films/{film}/status', 'FilmController@updateStatus')->name('films.updateStatus');
 });
 
 Auth::routes();

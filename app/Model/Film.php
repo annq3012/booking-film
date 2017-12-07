@@ -100,7 +100,7 @@ class Film extends Model
      *
      * @type array
      */
-    public static $availableTechnologies = [
+    public static $technologies = [
         '2D' => self::TYPE_2D,
         '3D' => self::TYPE_3D,
         '4D' => self::TYPE_4D,
@@ -127,9 +127,32 @@ class Film extends Model
      *
      * @type array
      */
-    public static $availableRated = [
+    public static $rated = [
         '13+' => self::RATED_13,
         '16+' => self::RATED_16,
         '18+' => self::RATED_18,
     ];
+
+    /**
+     * Get status of a reservation.
+     *
+     * @return string
+     */
+    public function getTypeLabelAttribute()
+    {
+        switch ($this->attributes['technologies']) {
+            case self::TYPE_2D:
+                return  __('2D');
+                break;
+            case self::TYPE_3D:
+                return  __('3D');
+                break;
+            case self::TYPE_4D:
+                return __('4D');
+                break;
+            default:
+                return __('5D');
+                break;
+        }
+    }
 }

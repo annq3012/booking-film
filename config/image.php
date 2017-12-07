@@ -12,4 +12,7 @@ return [
     'films' => [
         'path_upload' => 'images/film/'
     ],
+    'no_image' => [
+        'path_no-image' => 'images/no-image.jpeg'
+    ],
 ];

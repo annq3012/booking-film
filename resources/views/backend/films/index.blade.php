@@ -42,9 +42,10 @@
                     <th>{{ __('Name') }}</th>
                     <th>{{ __('Actor') }}</th>
                     <th>{{ __('Director')}}</th>
-                    <th>{{ __('Language') }}</th>
                     <th>{{ __('Year') }}</th>
-                    <th>{{ __('Genre') }}</th>
+                    <th>{{ __('Technology') }}</th>
+                    <th>{{ __('Image') }}</th>
+                    <th>{{ __('Link') }}</th>
                     <th>{{ __('Status') }}</th>
                     <th class="text-center">{{ __('Option') }}</th>
                   </tr>
@@ -53,14 +54,21 @@
                   @foreach ($films as $film)
                 <tr>
                   <td>{{ $film->id }}</td>
-                  <td>{{ $film->name }}
-                  </td>
-                  <td>{{ $film->fullname }}</td>
+                  <td>{{ $film->name }}</td>
                   <td> {{ $film->actor }}</td>
                   <td>{{ $film->director }}</td>
-                  <td>{{ $film->language }}</td>
                   <td>{{ $film->year }}</td>
-                  <td>{{ $film->genre }}</td>
+                  <td class="text-center"><span class="format-{{$film->type_label}}">{{$film->type_label}}</span></td>
+                  @php
+                    $urlFilm = "";
+                    if ($film->image != null) {
+                      $urlFilm = "images/film/".$film->image;
+                    } else {
+                      $urlFilm = config('image.no_image.path_no-image');
+                    }
+                  @endphp
+                  <td><img src="{{asset($urlFilm)}}" {{$urlFilm == ""}} class="images-film" name="image"></td>
+                  <td>{{ $film->link }}</td>
                   <td class="text-center">
                     <form method="POST" action=" {{-- {{ route('films.updateRole', $film) }} --}} ">
                       {!! csrf_field() !!}

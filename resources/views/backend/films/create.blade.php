@@ -41,16 +41,16 @@
                 </div>
                 <div class="form-group clr pull-left ml-10 ">
                   <label for="technologies">{{ __('Technologies') }}</label>
-                  <select name="type" id="type" class="{{ $errors->has('type') ? ' has-error' : '' }}">
-                    @foreach (App\Model\Film::$availableTechnologies as $technologies => $value)
-                     <option value="{{$value}}">{{$technologies}}</option>
+                  <select name="technologies" id="technologies" class="{{ $errors->has('type') ? ' has-error' : '' }}">
+                    @foreach (App\Model\Film::$technologies as $technology => $value)
+                     <option value="{{$value}}">{{$technology}}</option>
                     @endforeach
                   </select>
                 </div>
                 <div class="form-group pull-left ml-10">
                   <label for="rated">{{ __('Rated') }}</label>
                   <select name="rated" id="rated">
-                    @foreach (App\Model\Film::$availableRated as $rated => $value)
+                    @foreach (App\Model\Film::$rated as $rated => $value)
                       <option value="{{$value}}">{{$rated}}</option>
                     @endforeach
                   </select>
@@ -93,7 +93,7 @@
                 </div>
                  <div class="form-group">
                   <label for="link">{{ __('Link') }}</label>
-                  <input type="text" class="form-control {{ $errors->has('link') ? ' has-error' : '' }}" id="link" name="link" placeholder="{{ __('Enter link') }}">
+                  <input type="text" class="form-control {{ $errors->has('link') ? ' has-error' : '' }}" id="link" name="link" placeholder="{{ __('Enter link') }}" value="{{ old('link') }}">
                   <small class="text-danger">{{ $errors->first('link') }}</small>
                 </div>
                 <div class="form-group">

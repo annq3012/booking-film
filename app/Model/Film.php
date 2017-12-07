@@ -78,22 +78,60 @@ class Film extends Model
     /**
      * Value of type 2D
      */
-    const TYPE_2D = 1;
+    const TYPE_2D = '2D';
 
     /**
      * Value of type 3D
      */
-    const TYPE_3D = 2;
+    const TYPE_3D = '3D';
 
     /**
      * Value of type 4D
      */
-    const TYPE_4D = 3;
+    const TYPE_4D = '4D';
 
     /**
      * Value of type 5D
      */
-    const TYPE_5D = 4;
+    const TYPE_5D = '5D';
+
+    /**
+     * Type of rooms statuses
+     *
+     * @type array
+     */
+    public static $technologies = [
+        self::TYPE_2D,
+        self::TYPE_3D,
+        self::TYPE_4D,
+        self::TYPE_5D
+    ];
+
+    /**
+     * Value of RATED 13+
+     */
+    const RATED_13 = '13+';
+
+    /**
+     * Value of RATED 16+
+     */
+    const RATED_16 = '16+';
+
+    /**
+     * Value of RATED 18+
+     */
+    const RATED_18 = '18+';
+
+    /**
+     * Type of rooms statuses
+     *
+     * @type array
+     */
+    public static $rated = [
+        self::RATED_13,
+        self::RATED_16,
+        self::RATED_18,
+    ];
 
     /**
      * Get status of a reservation.

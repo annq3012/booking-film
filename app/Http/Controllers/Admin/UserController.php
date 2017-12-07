@@ -102,10 +102,15 @@ class UserController extends Controller
      */
     public function updateRole(User $user)
     {
-        if ($user->is_admin == User::ROLE_ADMIN) {
-            $user->update(['is_admin' => User::ROLE_USER]);
+        if (Auth::user()->id == $user->id) {
+            flash(__('User is logging! Can\'t change permission!'))->warning();
+            return redirect()->back()->withInput();
         } else {
-            $user->update(['is_admin' => User::ROLE_ADMIN]);
+            if ($user->is_admin == User::ROLE_ADMIN) {
+                $user->update(['is_admin' => User::ROLE_USER]);
+            } else {
+                $user->update(['is_admin' => User::ROLE_ADMIN]);
+            }
         }
         return redirect()->route('users.index');
     }

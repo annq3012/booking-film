@@ -99,6 +99,10 @@
     font-weight: bold;
     border-radius: 5px; 
 }
+.images-film {
+    width: 50px;
+    height:60px;
+}
 .message {
     display: none;
     color: red;

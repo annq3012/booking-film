@@ -43,8 +43,8 @@
                     <th>{{ __('Name') }}</th>
                     <th>{{ __('Actor') }}</th>
                     <th>{{ __('Director')}}</th>
-                    <th>{{ __('Technology') }}</th>
                     <th>{{ __('Year') }}</th>
+                    <th>{{ __('Technology') }}</th>
                     <th>{{ __('Image') }}</th>
                     <th>{{ __('Link') }}</th>
                     <th>{{ __('Status') }}</th>
@@ -56,11 +56,19 @@
                 <tr>
                   <td>{{ $film->id }}</td>
                   <td>{{ $film->name }}</td>
-                  <td>{{ $film->actor }}</td>
+                  <td> {{ $film->actor }}</td>
                   <td>{{ $film->director }}</td>
-                  <td class="text-center"><span class="format-{{$film->type_label}}">{{$film->type_label}}</span></td>
                   <td>{{ $film->year }}</td>
-                  <td><img src="{{asset('images/film/'.$film->image)}}" class="images-film"></td>
+                  <td class="text-center"><span class="format-{{$film->type_label}}">{{$film->type_label}}</span></td>
+                  @php
+                    $urlFilm = "";
+                    if ($film->image != null) {
+                      $urlFilm = "images/film/".$film->image;
+                    } else {
+                      $urlFilm = config('image.no_image.path_no-image');
+                    }
+                  @endphp
+                  <td><img src="{{asset($urlFilm)}}" {{$urlFilm == ""}} class="images-film" name="image"></td>
                   <td>{{ $film->link }}</td>
                   <td class="text-center">
                     <form method="POST" action=" {{-- {{ route('films.updateRole', $film) }} --}} ">

@@ -37,7 +37,7 @@ class Film extends Model
      * @var array $fillable
      */
     protected $fillable = [
-        'name', 'description', 'language', 'derector', 'actor', 'year', 'duration', 'image', 'rated', 'release', 'genre', 'link', 'technologies', 'status'
+        'name', 'description', 'language', 'director', 'actor', 'year', 'duration', 'image', 'rated', 'release', 'genre', 'link', 'technologies', 'status'
     ];
 
     /**
@@ -66,71 +66,12 @@ class Film extends Model
     const ROW_LIMIT = 10;
 
     /**
-     * Value of actived user
-     */
-    const STATUS_ACTIVED = 1;
-
-    /**
-     * Value of disabled user
-     */
-    const STATUS_DISABLED = 0;
-
-    /**
-     * Value of type 2D
-     */
-    const TYPE_2D = '2D';
-
-    /**
-     * Value of type 3D
-     */
-    const TYPE_3D = '3D';
-
-    /**
-     * Value of type 4D
-     */
-    const TYPE_4D = '4D';
-
-    /**
-     * Value of type 5D
-     */
-    const TYPE_5D = '5D';
-
-    /**
-     * Type of rooms statuses
-     *
-     * @type array
-     */
-    public static $technologies = [
-        self::TYPE_2D,
-        self::TYPE_3D,
-        self::TYPE_4D,
-        self::TYPE_5D
-    ];
-
-    /**
-     * Value of RATED 13+
-     */
-    const RATED_13 = '13+';
-
-    /**
-     * Value of RATED 16+
-     */
-    const RATED_16 = '16+';
-
-    /**
-     * Value of RATED 18+
-     */
-    const RATED_18 = '18+';
-
-    /**
      * Type of rooms statuses
      *
      * @type array
      */
     public static $rated = [
-        self::RATED_13,
-        self::RATED_16,
-        self::RATED_18,
+        '13+', '16+', '18+',
     ];
 
     /**
@@ -141,13 +82,13 @@ class Film extends Model
     public function getTypeLabelAttribute()
     {
         switch ($this->attributes['technologies']) {
-            case self::TYPE_2D:
+            case '2D':
                 return  __('2D');
                 break;
-            case self::TYPE_3D:
+            case '3D':
                 return  __('3D');
                 break;
-            case self::TYPE_4D:
+            case '4D':
                 return __('4D');
                 break;
             default:
@@ -156,11 +97,16 @@ class Film extends Model
         }
     }
 
-    public function getParameter()
+    /**
+     * Get parameter of a film.
+     *
+     * @return array
+     */
+    public static function getParameter()
     {
-        $arrPara = array('technologies' => Film::$technologies , 'rated' => Film::$rated,
-        'actived' => Film::STATUS_ACTIVED,
-        'disabled' => Film::STATUS_DISABLED);
+        $arrPara = array('rated' => Film::$rated,
+        'actived' => 1,
+        'disabled' => 0);
         return $arrPara;
     }
 }

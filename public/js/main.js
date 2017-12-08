@@ -56,7 +56,7 @@ $(document).ready(function(){
     $('#btn-add-seats').click(function (event) {
         let amount = $('#max_seats').val();
         if (amount > 10){
-            $(".message").html('<small style="color:red">Max Seats is not equal 10</small>');
+            $(".message").css('display', 'inline');
         } else {
             for(let i =0 ; i < amount; i++) {
                 let $div = $('<div></div>');

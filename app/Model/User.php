@@ -80,17 +80,17 @@ class User extends Authenticatable
     }
 
     /**
-     * Value of admin
-     */
-    const ROLE_ADMIN = 1;
-
-    /**
-     * Value of user
-     */
-    const ROLE_USER = 0;
-
-    /**
      * Value of pagination
      */
     const ROW_LIMIT = 10;
+
+    /**
+     * Value of role
+     *
+     * @type array
+     */
+    public static $rolePermission = [
+        'admin' => 1,
+        'user' => 0,
+    ];
 }

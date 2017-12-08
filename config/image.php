@@ -11,8 +11,14 @@ return [
     ],
     'films' => [
        'path_upload' => 'images/film/'
-	  ],
-	  'no_image' => [
-	      'path_no-image' => 'images/no-image.jpeg'
-	  ], 
+    ],
+    'no_image' => [
+          'path_no-image' => 'images/no-image.jpeg'
+    ],
+    'technologies' => [
+      '2D' => 1,
+      '3D' => 2,
+      '4D' => 3,
+      '5D' => 4,
+    ],
 ];

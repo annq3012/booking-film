@@ -17,9 +17,16 @@ class FilmController extends Controller
      */
     public function index()
     {
+        // $film = new Film();
+        // dd($film->technologies);
          $films = Film::select()
                       ->paginate(Film::ROW_LIMIT);
-         return view('backend.films.index', compact('films'));
+        foreach ($films as $film) {
+            $arrTechnologies = explode(', ', $film->technologies);
+            $film->technologies = $arrTechnologies;
+        }
+         $filmPara = Film::getParameter();
+         return view('backend.films.index', compact('films', 'filmPara'));
     }
 
     /**
@@ -49,9 +56,8 @@ class FilmController extends Controller
      */
     public function create()
     {
-        $film = new Film();
-        $filmPara = $film->getParameter();
-        return view('backend.films.create',compact('filmPara'));
+        $filmPara = Film::getParameter();
+        return view('backend.films.create', compact('filmPara'));
     }
 
     /**
@@ -64,6 +70,18 @@ class FilmController extends Controller
     public function store(CreateFilmRequest $request)
     {
         $films = new Film($request->all());
+        $types = "";
+        $count = count($films->technologies);
+        $check = 1;
+        foreach ($films->technologies as $technology) {
+            $input = "".$technology;
+            $types .= $input;
+            if ($check < $count) {
+                $types .= ', ';
+                $check++;
+            }
+        }
+        $films->technologies = $types;
         if ($request->hasFile('image')) {
             $films->image = config('image.name_prefix') .'-'. $request->image->hashName();
             $request->file('image')->move(config('image.films.path_upload'), $films->image);

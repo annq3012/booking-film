@@ -60,7 +60,7 @@
                     <form method="POST" action=" {{ route('users.updateRole', $user) }} ">
                       {!! csrf_field() !!}
                       {{ method_field('PUT') }}
-                      @if ($user->is_admin == App\Model\User::ROLE_ADMIN)
+                      @if ($user->is_admin == $role['admin'])
                       <button type="submit" class="btn btn-warning btn-sm">{{ __('Admin') }}</button>
                       @else
                         <button type="submit" class="btn btn-default btn-sm">{{ __('User') }}</button>

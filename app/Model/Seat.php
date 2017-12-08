@@ -33,12 +33,12 @@ class Seat extends Model
     }
 
     /**
-    * Value of seats
-    */
-    const SEAT_MIN = 1;
-
-    /**
-    * Value of seats
-    */
-    const SEAT_MAX = 15;
+     * Value of seat
+     *
+     * @type array
+     */
+    public static $seatValue = [
+        'max' => 10,
+        'min' => 1,
+    ];
 }

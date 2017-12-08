@@ -76,11 +76,11 @@
                 <div class="form-group">
                   <label>
                     <label for="admin">Admin</label>
-                    <input type="radio" id="admin" class="flat-red" name="is_admin" checked value="{{App\Model\User::ROLE_ADMIN}}">
+                    <input type="radio" id="admin" class="flat-red" name="is_admin" checked value="{{$role['admin']}}">
                   </label>
                   <label>
                     <label for="user">User</label>
-                    <input type="radio" id="user" class="flat-red" name="is_admin" value="{{App\Model\User::ROLE_USER}}">
+                    <input type="radio" id="user" class="flat-red" name="is_admin" value="{{$role['user']}}">
                   </label>
                 </div>
               </div>

@@ -46,7 +46,6 @@
                     <th>{{ __('Year') }}</th>
                     <th>{{ __('Technology') }}</th>
                     <th>{{ __('Image') }}</th>
-                    <th>{{ __('Link') }}</th>
                     <th>{{ __('Status') }}</th>
                     <th class="text-center">{{ __('Option') }}</th>
                   </tr>
@@ -59,7 +58,11 @@
                   <td> {{ $film->actor }}</td>
                   <td>{{ $film->director }}</td>
                   <td>{{ $film->year }}</td>
-                  <td class="text-center"><span class="format-{{$film->type_label}}">{{$film->type_label}}</span></td>
+                  <td class="text-center">
+                    @foreach ($film->technologies as $technology => $value)
+                    <span class="format-{{$value}}" name="technologies" >{{$value}}</span>
+                    @endforeach
+                  </td>
                   @php
                     $urlFilm = "";
                     if ($film->image != null) {
@@ -69,12 +72,11 @@
                     }
                   @endphp
                   <td><img src="{{asset($urlFilm)}}" {{$urlFilm == ""}} class="images-film" name="image"></td>
-                  <td>{{ $film->link }}</td>
                   <td class="text-center">
                     <form method="POST" action=" {{-- {{ route('films.updateRole', $film) }} --}} ">
                       {!! csrf_field() !!}
                       {{ method_field('PUT') }}
-                      @if ($film->status == App\Model\Film::STATUS_ACTIVED)
+                      @if ($film->status == $filmPara['actived'])
                       <button type="submit" class="btn btn-warning btn-sm">{{ __('Active') }}</button>
                       @else
                         <button type="submit" class="btn btn-default btn-sm">{{ __('Disable') }}</button>

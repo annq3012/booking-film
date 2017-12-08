@@ -39,15 +39,15 @@
                   <input type="text" class="form-control {{ $errors->has('genre') ? ' has-error' : '' }}" id="genre" name="genre" placeholder="{{ __('Enter genre') }}">
                   <small class="text-danger">{{ $errors->first('genre') }}</small>
                 </div>
-                <div class="form-group clr pull-left ml-10 ">
-                  <label for="technologies">{{ __('Technologies') }}</label>
-                  <select name="technologies" id="technologies" class="{{ $errors->has('type') ? ' has-error' : '' }}">
-                    @foreach ($filmPara['technologies'] as $technology)
-                     <option value="{{$technology}}">{{$technology}}</option>
-                    @endforeach
-                  </select>
+                <div class="form-group clr pull-left ml-10 w-100">
+                  <label for="technologies">{{ __('Technologies:') }}</label>
+                  @foreach (config('image.technologies') as $technology => $value)
+                    <p class="technologies">
+                      <span>{{$technology}}</span><input type="checkbox" name='technologies[{{$value}}]' class=" {{ $errors->has('type') ? ' has-error' : '' }}" value="{{$technology}}" /></span>
+                    </p>
+                  @endforeach                  
                 </div>
-                <div class="form-group pull-left ml-10">
+                <div class="form-group clr pull-left ml-10">
                   <label for="rated">{{ __('Rated') }}</label>
                   <select name="rated" id="rated">
                     @foreach ($filmPara['rated'] as $rated)

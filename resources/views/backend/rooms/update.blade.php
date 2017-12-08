@@ -23,7 +23,7 @@
                 <div class="form-group">
                   <label for="type">{{ __('Type of Room:') }}</label>
                   <select name="type" id="type" class="{{ $errors->has('type') ? ' has-error' : '' }}">
-                  @foreach (App\Model\Room::$availableStatuses as $type => $value)
+                  @foreach (config('image.technologies') as $type => $value)
                    <option value="{{ $value }}" {{$value == old('type', $room->type )? 'selected' : ''}}>{{$type}}</option>
                   @endforeach
                   </select>
@@ -60,7 +60,7 @@
                       <div>
                         <span>{{$seat->y_axist}}</span>
                         <select name="seats[]" class="fs seats">
-                        @for ($i = App\Model\Seat::SEAT_MIN ; $i <= App\Model\Seat::SEAT_MAX ; $i++)
+                        @for ($i = $seatValue['min'] ; $i <= $seatValue['max'] ; $i++)
                           <option value="{{$i}}"  {{$i == $seat->count_seats ? 'selected' : ''}}>{{$i}}</option>
                         @endfor
                         </select>

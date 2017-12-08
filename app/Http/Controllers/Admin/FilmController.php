@@ -29,19 +29,9 @@ class FilmController extends Controller
      */
     public function create()
     {
-        $technologies = Film::$technologies;
-        $rated = Film::$rated;
-        $actived = Film::STATUS_ACTIVED;
-        $disabled = Film::STATUS_DISABLED;
-        return view(
-            'backend.films.create',
-            compact(
-                'technologies',
-                'rated',
-                'actived',
-                'disabled'
-            )
-        );
+        $film = new Film();
+        $filmPara = $film->getParameter();
+        return view('backend.films.create',compact('filmPara'));
     }
 
     /**

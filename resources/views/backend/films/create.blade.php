@@ -42,7 +42,7 @@
                 <div class="form-group clr pull-left ml-10 ">
                   <label for="technologies">{{ __('Technologies') }}</label>
                   <select name="technologies" id="technologies" class="{{ $errors->has('type') ? ' has-error' : '' }}">
-                    @foreach ($technologies as $technology)
+                    @foreach ($filmPara['technologies'] as $technology)
                      <option value="{{$technology}}">{{$technology}}</option>
                     @endforeach
                   </select>
@@ -50,7 +50,7 @@
                 <div class="form-group pull-left ml-10">
                   <label for="rated">{{ __('Rated') }}</label>
                   <select name="rated" id="rated">
-                    @foreach ($rated as $rated)
+                    @foreach ($filmPara['rated'] as $rated)
                       <option value="{{$rated}}">{{$rated}}</option>
                     @endforeach
                   </select>
@@ -99,11 +99,11 @@
                 <div class="form-group">
                   <label>
                     <label for="admin">Actived</label>
-                    <input type="radio" id="actived" class="flat-red" name="status" checked value="{{$actived}}">
+                    <input type="radio" id="actived" class="flat-red" name="status" checked value="{{$filmPara['actived']}}">
                   </label>
                   <label>
                     <label for="user">Disable</label>
-                    <input type="radio" id="disabled" class="flat-red" name="status" value="{{$disabled}}">
+                    <input type="radio" id="disabled" class="flat-red" name="status" value="{{$filmPara['disabled']}}">
                   </label>
                 </div>
               </div>

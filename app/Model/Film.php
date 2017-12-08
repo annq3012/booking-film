@@ -155,4 +155,12 @@ class Film extends Model
                 break;
         }
     }
+
+    public function getParameter()
+    {
+        $arrPara = array('technologies' => Film::$technologies , 'rated' => Film::$rated,
+        'actived' => Film::STATUS_ACTIVED,
+        'disabled' => Film::STATUS_DISABLED);
+        return $arrPara;
+    }
 }

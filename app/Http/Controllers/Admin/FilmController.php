@@ -23,6 +23,26 @@ class FilmController extends Controller
     }
 
     /**
+     * Remove the specified resource from storage.
+     *
+     * @param int $film object of film
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Film $film)
+    {
+        if ($film->delete()) {
+            if ($film->image != null && file_exists(base_path('public/images/film/'.$film->image))) {
+                unlink(base_path('public/images/film/'.$film->image));
+            }
+            flash(__('Deletion successful!'))->success();
+        } else {
+            flash(__('Deletion failed!'))->error();
+        }
+        return redirect()->route('films.index');
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

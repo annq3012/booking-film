@@ -116,76 +116,20 @@ class Room extends Model
     const ROW_LIMIT = 10;
 
     /**
-     * Value of type 2D
-     */
-    const TYPE_2D = 1;
-
-    /**
-     * Value of type 3D
-     */
-    const TYPE_3D = 2;
-
-    /**
-     * Value of type 4D
-     */
-    const TYPE_4D = 3;
-
-    /**
-     * Value of type 5D
-     */
-    const TYPE_5D = 4;
-
-    /**
-     * Type of rooms statuses
-     *
-     * @type array
-     */
-    public static $availableStatuses = [
-        '2D' => self::TYPE_2D,
-        '3D' => self::TYPE_3D,
-        '4D' => self::TYPE_4D,
-        '5D' => self::TYPE_5D
-    ];
-
-
-    /**
      * Get type of a room.
-     *
-     * @return string
-     */
-    public function getStatusLabelAttribute()
-    {
-        switch ($this->attributes['type']) {
-            case self::TYPE_3D:
-                return __('3D');
-                break;
-            case self::TYPE_4D:
-                return __('4D');
-                break;
-            case self::TYPE_5D:
-                return __('5D');
-                break;
-            default:
-                return __('2D');
-                break;
-        }
-    }
-
-    /**
-     * Get status of a reservation.
      *
      * @return string
      */
     public function getTypeLabelAttribute()
     {
         switch ($this->attributes['type']) {
-            case self::TYPE_2D:
+            case 1:
                 return  __('2D');
                 break;
-            case self::TYPE_3D:
+            case 2:
                 return  __('3D');
                 break;
-            case self::TYPE_4D:
+            case 3:
                 return __('4D');
                 break;
             default:

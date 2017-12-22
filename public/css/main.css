@@ -76,28 +76,28 @@
     padding: 10px;
     color:white;
     font-weight: bold; 
-    border-radius: 5px;
+    border-radius: 50%;
 }
 .format-3D {
     background-color: green;
     padding: 10px;
     color:white;
     font-weight: bold; 
-    border-radius: 5px;
+    border-radius: 50%;
 }
 .format-4D {
     background-color: blue;
     padding: 10px;
     color:white;
     font-weight: bold;
-    border-radius: 5px; 
+    border-radius: 50%; 
 }
 .format-5D {
     background-color: red;
     padding: 10px;
     color:white;
     font-weight: bold;
-    border-radius: 5px; 
+    border-radius: 50%; 
 }
 .images-film {
     width: 50px;
@@ -109,4 +109,13 @@
 }
 .clr{
     clear:both;
+}
+.technologies {
+    padding: 10px;
+    font-weight: bold;
+    width: 20%;
+    display: inline-block;
+}
+.w-100 {
+    width: 100%;
 }

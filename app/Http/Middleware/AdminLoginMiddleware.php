@@ -20,7 +20,7 @@ class AdminLoginMiddleware
     {
         if (Auth::check()) {
             $user = Auth::user();
-            if ($user->is_admin == User::ROLE_ADMIN) {
+            if ($user->is_admin == User::$rolePermission['admin']) {
                 return $next($request);
             } else {
                 return redirect()->back();

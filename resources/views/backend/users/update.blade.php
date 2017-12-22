@@ -70,7 +70,7 @@
                   <input type="file" id="image" name="image" value="{{$user->image}}">
                 </div>
                 <div class="form-group">
-                  @if ($user->is_admin == App\Model\User::ROLE_ADMIN)
+                  @if ($user->is_admin == $role['admin'])
                   <span class="btn btn-warning">Admin</span>
                   @else
                     <span class="btn btn-default">User</span>

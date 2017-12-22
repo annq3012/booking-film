@@ -27,10 +27,11 @@ class UserController extends Controller
             'image',
             'is_admin',
         ];
+        $role = User::$rolePermission;
         $users = User::search()
                      ->select($columns)->paginate(User::ROW_LIMIT);
         $users->appends(['search' => request('search')]);
-        return view('backend.users.index', compact('users'));
+        return view('backend.users.index', compact('users', 'role'));
     }
 
     /**
@@ -64,7 +65,8 @@ class UserController extends Controller
     */
     public function edit(User $user)
     {
-        return view('backend.users.update', compact('user'));
+        $role = User::$rolePermission;
+        return view('backend.users.update', compact('user', 'role'));
     }
 
     /**
@@ -83,6 +85,9 @@ class UserController extends Controller
             $fileName = config('image.name_prefix') . "-" . $file->hashName();
             $file->move(config('image.users.path_upload'), $fileName);
             $input['image'] = $fileName;
+        }
+        if ($input['password'] == null) {
+            $input['password'] = $user->password;
         }
         if ($user->update($input)) {
             flash(__('Update successful!'))->success();
@@ -106,10 +111,10 @@ class UserController extends Controller
             flash(__('User is logging! Can\'t change permission!'))->warning();
             return redirect()->back()->withInput();
         } else {
-            if ($user->is_admin == User::ROLE_ADMIN) {
-                $user->update(['is_admin' => User::ROLE_USER]);
+            if ($user->is_admin == User::$rolePermission['admin']) {
+                $user->update(['is_admin' => User::$rolePermission['user']]);
             } else {
-                $user->update(['is_admin' => User::ROLE_ADMIN]);
+                $user->update(['is_admin' => User::$rolePermission['admin']]);
             }
         }
         return redirect()->route('users.index');
@@ -122,7 +127,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('backend.users.create');
+        $role = User::$rolePermission;
+        return view('backend.users.create', compact('role'));
     }
 
     /**

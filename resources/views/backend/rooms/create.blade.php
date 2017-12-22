@@ -22,8 +22,8 @@
                 <div class="form-group">
                   <label for="type">{{ __('Type of Room:') }}</label>
                   <select name="type" id="type" class="{{ $errors->has('type') ? ' has-error' : '' }}">
-                  @foreach (App\Model\Room::$availableStatuses as $key => $value)
-                   <option value="{{$value}}">{{$key}}</option>
+                  @foreach (config('image.technologies') as $technology => $value)
+                   <option value="{{$value}}" {{$value == old('type')? 'selected' : ''}}>{{$technology}}</option>
                   @endforeach
                   </select>
                   <small class="text-danger">{{ $errors->first('type') }}</small>
@@ -33,7 +33,7 @@
                   <select name="city" id="city" class="list-cities {{ $errors->has('city') ? ' has-error' : '' }}">
                     <option value="0">{{ __('Choose')}}</option>
                   @foreach ($cities as $city)
-                   <option value="{{$city->id}}">{{$city->city}}</option>
+                   <option value="{{$city->id}} {{$city->id == old('city') ? 'selected' : ''}}">{{$city->city}}</option>
                   @endforeach
                   </select>
                   <small class="text-danger">{{ $errors->first('city') }}</small>
@@ -56,7 +56,7 @@
                         <span class="fa fa-plus-circle"></span>
                       </button>
                     </div>
-                    <div class="message"></div>
+                    <div class="message"><small style="color:red">Max Seats is not equal 10</small></div>
                   </div>
                    <small class="text-danger">{{ $errors->first('max_seats') }}</small>
                 </div>

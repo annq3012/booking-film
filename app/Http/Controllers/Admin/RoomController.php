@@ -42,11 +42,11 @@ class RoomController extends Controller
     public function create()
     {
         $columns = [
-        'id',
-        'name',
-        'cinema_id',
-        'type',
-        'max_seats',
+            'id',
+            'name',
+            'cinema_id',
+            'type',
+            'max_seats',
         ];
         $cities = City::select('id', 'city')->get();
         $rooms = Room::select($columns)->with('seats')->
@@ -131,6 +131,7 @@ class RoomController extends Controller
     */
     public function edit(Room $room)
     {
+        $seatValue = Seat::$seatValue;
         $seats = Seat::select('id', 'y_axist', 'type', \DB::raw('count("y_axist") as count_seats'))
                      ->where('room_id', $room->id)
                      ->groupBy('y_axist')
@@ -140,7 +141,7 @@ class RoomController extends Controller
                          ->join('rooms', 'cinema_id', 'cinemas.id')
                          ->where('rooms.id', $room->id)
                          -> get();
-        return view('backend.rooms.update', compact('room', 'seats', 'cinemas'));
+        return view('backend.rooms.update', compact('room', 'seats', 'cinemas', 'seatValue'));
     }
 
     /**
@@ -184,12 +185,12 @@ class RoomController extends Controller
             $resultRoom = $room->update($request->except(['seats[]']));
             if ($resultRoom && $resultSeat) {
                 DB::commit();
-                flash(__('Create success'))->success();
+                flash(__('Update success'))->success();
                 return redirect()->route('rooms.index');
             }
         } catch (Exception $e) {
             DB::rollback();
-            flash(__('Create failure'))->error();
+            flash(__('Update failure'))->error();
             return redirect()->back()->withInput();
         }
     }
